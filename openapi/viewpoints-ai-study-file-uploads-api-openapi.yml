@@ -1,0 +1,153 @@
+openapi: 3.1.0
+info:
+  description: 'The Viewpoints Study API allows you to programmatically create and retrieve AI-powered research studies with simulated participants.
+
+
+    ## Authentication
+
+
+    - **API Key** — pass your key in the `X-API-Key` header
+
+    To obtain an API key, visit your account settings in the Viewpoints dashboard.
+
+
+    ## Workflow
+
+
+    1. **Upload stimuli** (optional, not needed for text only stimuli) — use the presigned URL endpoint to upload images, video, audio, or PDFs to S3
+
+    2. **Create a study** — submit your study configuration with audience segments, assigned materials, and questions
+
+    3. **Poll for completion** — use the job status endpoint to track progress and get completed study ID
+
+    4. **Retrieve results** — once complete, fetch the full study results with all participant responses using the study ID'
+  title: Viewpoints Study Studies Study File Uploads API
+  version: 1.0.0
+security:
+- apiKey: []
+- bearerAuth: []
+tags:
+- description: Upload stimuli files for use in studies
+  name: Study File Uploads
+paths:
+  /v1/studies/uploads/presigned-url:
+    post:
+      description: Generate a pre-signed S3 URL for uploading study stimuli files. Use the returned URL and fields to upload the file via a multipart POST directly to S3, then include the S3 key in the create study request.
+      operationId: post__v1_studies_uploads_presigned-url
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PresignedUrlRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PresignedUrlResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Validation error or unsupported file type
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Authentication failed
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Not authorized
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Upload rate limit exceeded
+      summary: Get presigned upload URL
+      tags:
+      - Study File Uploads
+components:
+  schemas:
+    PresignedUrlResponse:
+      properties:
+        key:
+          title: Key
+          type: string
+        max_file_size:
+          title: Max File Size
+          type: integer
+        presigned_post_data:
+          $ref: '#/components/schemas/PresignedPostData'
+      required:
+      - presigned_post_data
+      - max_file_size
+      - key
+      title: PresignedUrlResponse
+      type: object
+    PresignedUrlRequest:
+      examples:
+      - file_type: image/png
+        filename: product_photo.png
+      properties:
+        file_type:
+          description: 'MIME type of the file. Supported types: image/*, video/*, audio/*, application/pdf, plus text/plain and DOCX as BBot question/text-stim source documents.'
+          minLength: 1
+          title: File Type
+          type: string
+        filename:
+          minLength: 1
+          title: Filename
+          type: string
+      required:
+      - filename
+      - file_type
+      title: PresignedUrlRequest
+      type: object
+    PresignedPostData:
+      properties:
+        fields:
+          additionalProperties:
+            type: string
+          title: Fields
+          type: object
+        url:
+          title: Url
+          type: string
+      required:
+      - url
+      - fields
+      title: PresignedPostData
+      type: object
+    ErrorResponse:
+      properties:
+        details:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: null
+          title: Details
+        error:
+          title: Error
+          type: string
+      required:
+      - error
+      title: ErrorResponse
+      type: object
+  securitySchemes:
+    apiKey:
+      in: header
+      name: X-API-Key
+      type: apiKey
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

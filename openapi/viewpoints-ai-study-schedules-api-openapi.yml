@@ -1,0 +1,240 @@
+openapi: 3.1.0
+info:
+  description: 'The Viewpoints Study API allows you to programmatically create and retrieve AI-powered research studies with simulated participants.
+
+
+    ## Authentication
+
+
+    - **API Key** — pass your key in the `X-API-Key` header
+
+    To obtain an API key, visit your account settings in the Viewpoints dashboard.
+
+
+    ## Workflow
+
+
+    1. **Upload stimuli** (optional, not needed for text only stimuli) — use the presigned URL endpoint to upload images, video, audio, or PDFs to S3
+
+    2. **Create a study** — submit your study configuration with audience segments, assigned materials, and questions
+
+    3. **Poll for completion** — use the job status endpoint to track progress and get completed study ID
+
+    4. **Retrieve results** — once complete, fetch the full study results with all participant responses using the study ID'
+  title: Viewpoints Study Studies Study Schedules API
+  version: 1.0.0
+security:
+- apiKey: []
+- bearerAuth: []
+tags:
+- description: Manage recurring study schedules
+  name: Study Schedules
+paths:
+  /v1/study-schedules/{schedule_id}:
+    get:
+      description: Retrieve the current configuration of a study schedule.
+      operationId: get__v1_study-schedules_{schedule_id}
+      parameters:
+      - description: The UUID of the study schedule
+        in: path
+        name: schedule_id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudyScheduleResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Authentication failed
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Not authorized
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Schedule not found
+      summary: Get a study schedule
+      tags:
+      - Study Schedules
+  /v1/study-schedules/{study_id}:
+    put:
+      description: Creates a new schedule for the study if one doesn't exist, or updates the existing schedule. The study must belong to the authenticated user. When enabled, next_scheduled_run is set to now plus the repeat interval. When disabled, next_scheduled_run is cleared.
+      operationId: put__v1_study-schedules_{study_id}
+      parameters:
+      - description: The UUID of the study to schedule
+        in: path
+        name: study_id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateStudyScheduleRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudyScheduleResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Validation error
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Authentication failed
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Not authorized
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Study not found
+      summary: Create or update a study schedule
+      tags:
+      - Study Schedules
+components:
+  schemas:
+    ValidationError:
+      description: Model of a validation error response.
+      items:
+        $ref: '#/components/schemas/ValidationErrorElement'
+      title: ValidationError
+      type: array
+    UpdateStudyScheduleRequest:
+      properties:
+        enabled:
+          title: Enabled
+          type: boolean
+        repeat_interval:
+          anyOf:
+          - enum:
+            - 7
+            - 14
+            - 30
+            type: integer
+          - type: 'null'
+          default: null
+          title: Repeat Interval
+      required:
+      - enabled
+      title: UpdateStudyScheduleRequest
+      type: object
+    ErrorResponse:
+      properties:
+        details:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: null
+          title: Details
+        error:
+          title: Error
+          type: string
+      required:
+      - error
+      title: ErrorResponse
+      type: object
+    ValidationErrorElement:
+      description: Model of a validation error response element.
+      properties:
+        ctx:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          default: null
+          title: Error context
+        loc:
+          items:
+            type: string
+          title: Missing field name
+          type: array
+        msg:
+          title: Error message
+          type: string
+        type:
+          title: Error type
+          type: string
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationErrorElement
+      type: object
+    StudyScheduleResponse:
+      properties:
+        enabled:
+          title: Enabled
+          type: boolean
+        id:
+          title: Id
+          type: string
+        next_scheduled_run:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          default: null
+          title: Next Scheduled Run
+        repeat_interval:
+          anyOf:
+          - enum:
+            - 7
+            - 14
+            - 30
+            type: integer
+          - type: 'null'
+          default: null
+          title: Repeat Interval
+        source_study_id:
+          title: Source Study Id
+          type: string
+      required:
+      - id
+      - source_study_id
+      - enabled
+      title: StudyScheduleResponse
+      type: object
+  securitySchemes:
+    apiKey:
+      in: header
+      name: X-API-Key
+      type: apiKey
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
