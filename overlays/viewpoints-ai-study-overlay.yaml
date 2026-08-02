@@ -1,0 +1,21 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Viewpoints Study API
+  version: 1.0.0
+extends: openapi/viewpoints-ai-study-openapi.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enriched: '2026-07-21'
+    x-api-evangelist-provider: viewpoints-ai
+- target: $.servers
+  description: The spec declares no servers[]; the production base URL is api.viewpoints.ai.
+  update:
+  - url: https://api.viewpoints.ai
+    description: Production
+- target: $.info
+  update:
+    x-authentication: authentication/viewpoints-ai-authentication.yml
+    x-conventions: conventions/viewpoints-ai-conventions.yml
+    x-error-catalog: errors/viewpoints-ai-problem-types.yml
+    x-data-model: data-model/viewpoints-ai-data-model.yml

@@ -1,0 +1,63 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/viewpoints-ai-study-openapi.json
+# Entity-relationship graph derived from OpenAPI component schemas and id-reference fields.
+entities:
+- name: Study
+  key: id
+  schemas: [CreateStudyRequest, CreateStudyResponse, GetStudyResponse, StudyDetailsResponse]
+  description: A research/jury-simulation study with an audience configuration, assigned materials, and question groups; produces participant results.
+- name: StudyJob
+  key: job_id
+  schemas: [JobStatusResponse, CreateStudyResponse]
+  description: Asynchronous creation job for a study; polled until the study is complete, exposes phase/progress and the resulting study_id.
+- name: StudySchedule
+  key: id
+  schemas: [StudyScheduleResponse, UpdateStudyScheduleRequest]
+  description: A recurring-run schedule bound to a source study.
+- name: AssignedMaterials
+  schemas: [AssignedMaterialsItem]
+  description: A named set of stimuli assigned to a study cell/condition.
+- name: Stimulus
+  schemas: [StimulusItem, MediaItem, UploadedMediaItem]
+  description: A single piece of test material (text, image, video, audio, or PDF) within assigned materials.
+- name: QuestionGroup
+  schemas: [QuestionItem]
+  description: A group of questions posed to simulated participants.
+- name: Segment
+  schemas: [SegmentItem, SegmentSubCategoryItem]
+  description: An audience segment definition (with subcategories) used to compose the panel.
+- name: ParticipantResult
+  key: id
+  schemas: [ParticipantResultItem]
+  description: One simulated participant's assigned materials, segments, and response within a study's results.
+relationships:
+- from: StudyJob
+  to: Study
+  type: has_one
+  via: study_id
+- from: StudySchedule
+  to: Study
+  type: belongs_to
+  via: source_study_id
+- from: Study
+  to: AssignedMaterials
+  type: has_many
+  via: assigned_materials
+- from: AssignedMaterials
+  to: Stimulus
+  type: has_many
+  via: stimuli
+- from: Study
+  to: QuestionGroup
+  type: has_many
+  via: question_groups
+- from: Study
+  to: Segment
+  type: has_many
+  via: segments
+- from: Study
+  to: ParticipantResult
+  type: has_many
+  via: results
+notes: No externally documented id-prefix scheme was found; ids are surfaced as public_participant_id / public_response_id in results.

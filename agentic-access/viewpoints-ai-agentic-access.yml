@@ -1,0 +1,110 @@
+generated: '2026-07-21'
+method: generated
+source: openapi/viewpoints-ai-study-openapi.json
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 7
+  by_action_class:
+    acting: 4
+    connected: 3
+  by_consequence:
+    write: 4
+    read: 3
+  human_in_the_loop_required: 0
+operations:
+- path: /v1/studies
+  method: post
+  operationId: post__v1_studies
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/studies/jobs/{job_id}
+  method: get
+  operationId: get__v1_studies_jobs_{job_id}
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/studies/uploads/presigned-url
+  method: post
+  operationId: post__v1_studies_uploads_presigned-url
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/studies/{id}
+  method: get
+  operationId: get__v1_studies_{id}
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/studies/{id}
+  method: put
+  operationId: put__v1_studies_{id}
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/study-schedules/{schedule_id}
+  method: get
+  operationId: get__v1_study-schedules_{schedule_id}
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/study-schedules/{study_id}
+  method: put
+  operationId: put__v1_study-schedules_{study_id}
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required

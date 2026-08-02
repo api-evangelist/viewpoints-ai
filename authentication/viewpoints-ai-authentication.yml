@@ -1,0 +1,22 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/viewpoints-ai-study-openapi.json
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: apiKey
+  type: apiKey
+  in: header
+  parameter: X-API-Key
+  sources:
+  - openapi/viewpoints-ai-study-openapi.json
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  sources:
+  - openapi/viewpoints-ai-study-openapi.json

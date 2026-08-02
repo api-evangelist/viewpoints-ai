@@ -1,0 +1,2081 @@
+{
+  "components": {
+    "schemas": {
+      "AgeParametersItem": {
+        "properties": {
+          "max_age": {
+            "title": "Max Age",
+            "type": "integer"
+          },
+          "mean": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Mean"
+          },
+          "min_age": {
+            "title": "Min Age",
+            "type": "integer"
+          },
+          "st_dev": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "St Dev"
+          },
+          "venue": {
+            "anyOf": [
+              {
+                "maxLength": 200,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Venue"
+          }
+        },
+        "required": [
+          "min_age",
+          "max_age"
+        ],
+        "title": "AgeParametersItem",
+        "type": "object"
+      },
+      "AssignedMaterialsItem": {
+        "properties": {
+          "materials_name": {
+            "title": "Materials Name",
+            "type": "string"
+          },
+          "stimuli": {
+            "items": {
+              "$ref": "#/components/schemas/StimulusItem"
+            },
+            "title": "Stimuli",
+            "type": "array"
+          }
+        },
+        "required": [
+          "materials_name",
+          "stimuli"
+        ],
+        "title": "AssignedMaterialsItem",
+        "type": "object"
+      },
+      "CaptionResponse": {
+        "properties": {
+          "caption": {
+            "default": "",
+            "title": "Caption",
+            "type": "string"
+          },
+          "content": {
+            "title": "Content",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "content"
+        ],
+        "title": "CaptionResponse",
+        "type": "object"
+      },
+      "CreateStudyRequest": {
+        "examples": [
+          {
+            "added_captions": [
+              {
+                "content": "A new smartphone with a 6.5 inch display...",
+                "name": "Product description"
+              }
+            ],
+            "age_parameters": {
+              "max_age": 65,
+              "min_age": 18
+            },
+            "assigned_materials": [
+              {
+                "materials_name": "Control",
+                "stimuli": [
+                  {
+                    "media": [
+                      "A new smartphone with a 6.5 inch display..."
+                    ],
+                    "stimulus_name": "Product description",
+                    "stimulus_type": "text"
+                  }
+                ]
+              }
+            ],
+            "number_participants": 50,
+            "question_groups": [
+              {
+                "name": "Purchase Intent",
+                "questions": [
+                  "How likely are you to purchase this product?"
+                ],
+                "scale": "7 point scale (1 = Not at all likely; 7 = Extremely likely)"
+              }
+            ],
+            "research_goal": "",
+            "segments": [
+              {
+                "name": "Gender",
+                "subcategories": [
+                  {
+                    "name": "Male",
+                    "percentage": 50
+                  },
+                  {
+                    "name": "Female",
+                    "percentage": 50
+                  }
+                ]
+              }
+            ],
+            "title": "Example Study",
+            "uploaded_audios": [],
+            "uploaded_images": [],
+            "uploaded_pdfs": [],
+            "uploaded_videos": []
+          }
+        ],
+        "properties": {
+          "added_captions": {
+            "items": {
+              "$ref": "#/components/schemas/TextCaptionItem"
+            },
+            "title": "Added Captions",
+            "type": "array"
+          },
+          "age_parameters": {
+            "$ref": "#/components/schemas/AgeParametersItem"
+          },
+          "assigned_materials": {
+            "items": {
+              "$ref": "#/components/schemas/AssignedMaterialsItem"
+            },
+            "title": "Assigned Materials",
+            "type": "array"
+          },
+          "expected_version": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Expected Version"
+          },
+          "generate_life_stories": {
+            "default": true,
+            "title": "Generate Life Stories",
+            "type": "boolean"
+          },
+          "launch": {
+            "default": true,
+            "title": "Launch",
+            "type": "boolean"
+          },
+          "number_participants": {
+            "maximum": 1000,
+            "minimum": 1,
+            "title": "Number Participants",
+            "type": "integer"
+          },
+          "persona_context": {
+            "default": "",
+            "maxLength": 10000,
+            "title": "Persona Context",
+            "type": "string"
+          },
+          "question_groups": {
+            "items": {
+              "$ref": "#/components/schemas/QuestionItem"
+            },
+            "title": "Question Groups",
+            "type": "array"
+          },
+          "research_goal": {
+            "default": "",
+            "maxLength": 10000,
+            "title": "Research Goal",
+            "type": "string"
+          },
+          "segments": {
+            "items": {
+              "$ref": "#/components/schemas/SegmentItem"
+            },
+            "title": "Segments",
+            "type": "array"
+          },
+          "title": {
+            "maxLength": 70,
+            "minLength": 1,
+            "title": "Title",
+            "type": "string"
+          },
+          "uploaded_audios": {
+            "items": {
+              "$ref": "#/components/schemas/UploadedMediaItem"
+            },
+            "title": "Uploaded Audios",
+            "type": "array"
+          },
+          "uploaded_images": {
+            "items": {
+              "$ref": "#/components/schemas/UploadedMediaItem"
+            },
+            "title": "Uploaded Images",
+            "type": "array"
+          },
+          "uploaded_pdfs": {
+            "items": {
+              "$ref": "#/components/schemas/UploadedMediaItem"
+            },
+            "title": "Uploaded Pdfs",
+            "type": "array"
+          },
+          "uploaded_videos": {
+            "items": {
+              "$ref": "#/components/schemas/UploadedMediaItem"
+            },
+            "title": "Uploaded Videos",
+            "type": "array"
+          }
+        },
+        "required": [
+          "title",
+          "uploaded_images",
+          "uploaded_videos",
+          "uploaded_audios",
+          "uploaded_pdfs",
+          "added_captions",
+          "segments",
+          "age_parameters",
+          "assigned_materials",
+          "question_groups",
+          "number_participants"
+        ],
+        "title": "CreateStudyRequest",
+        "type": "object"
+      },
+      "CreateStudyResponse": {
+        "properties": {
+          "job_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Job Id"
+          },
+          "study_id": {
+            "title": "Study Id",
+            "type": "string"
+          },
+          "version": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Version"
+          }
+        },
+        "required": [
+          "study_id"
+        ],
+        "title": "CreateStudyResponse",
+        "type": "object"
+      },
+      "ErrorResponse": {
+        "properties": {
+          "details": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Details"
+          },
+          "error": {
+            "title": "Error",
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "title": "ErrorResponse",
+        "type": "object"
+      },
+      "GetStudyResponse": {
+        "properties": {
+          "completed_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Completed At"
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "folder_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Folder Id"
+          },
+          "is_shared": {
+            "default": false,
+            "title": "Is Shared",
+            "type": "boolean"
+          },
+          "results": {
+            "items": {
+              "$ref": "#/components/schemas/ParticipantResultItem"
+            },
+            "title": "Results",
+            "type": "array"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "study_details": {
+            "$ref": "#/components/schemas/StudyDetailsResponse"
+          },
+          "user_id": {
+            "title": "User Id",
+            "type": "string"
+          },
+          "version": {
+            "default": 0,
+            "title": "Version",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "study_details",
+          "results",
+          "created_at",
+          "status",
+          "user_id"
+        ],
+        "title": "GetStudyResponse",
+        "type": "object"
+      },
+      "JobStatusResponse": {
+        "properties": {
+          "analyze_done": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Analyze Done"
+          },
+          "analyze_item_elapsed_ms": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Analyze Item Elapsed Ms"
+          },
+          "analyze_item_expected_ms": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Analyze Item Expected Ms"
+          },
+          "analyze_total": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Analyze Total"
+          },
+          "analyze_video_seconds": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Analyze Video Seconds"
+          },
+          "error_message": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Error Message"
+          },
+          "has_analyzing_media": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Has Analyzing Media"
+          },
+          "has_enriched_context": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Has Enriched Context"
+          },
+          "has_life_stories": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Has Life Stories"
+          },
+          "has_media": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Has Media"
+          },
+          "has_qualitative_questions": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Has Qualitative Questions"
+          },
+          "jury_panel_size": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Jury Panel Size"
+          },
+          "media_done": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Media Done"
+          },
+          "media_item_elapsed_ms": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Media Item Elapsed Ms"
+          },
+          "media_item_expected_ms": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Media Item Expected Ms"
+          },
+          "media_total": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Media Total"
+          },
+          "number_participants": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Number Participants"
+          },
+          "phase": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Phase"
+          },
+          "phase_entered_at_ms": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Phase Entered At Ms"
+          },
+          "progress": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Progress"
+          },
+          "qual_questions_count": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Qual Questions Count"
+          },
+          "status": {
+            "enum": [
+              "processing",
+              "preparing_context",
+              "completed",
+              "failed"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "study_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Study Id"
+          },
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Title"
+          }
+        },
+        "required": [
+          "status"
+        ],
+        "title": "JobStatusResponse",
+        "type": "object"
+      },
+      "MediaItem": {
+        "description": "Media item that can be either a URL string or an object with url/type/name.",
+        "properties": {
+          "name": {
+            "default": "",
+            "title": "Name",
+            "type": "string"
+          },
+          "type": {
+            "default": "",
+            "title": "Type",
+            "type": "string"
+          },
+          "url": {
+            "title": "Url",
+            "type": "string"
+          }
+        },
+        "required": [
+          "url"
+        ],
+        "title": "MediaItem",
+        "type": "object"
+      },
+      "ParticipantResultItem": {
+        "properties": {
+          "assigned_materials": {
+            "title": "Assigned Materials",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "participant_assigned_materials": {
+            "items": {
+              "$ref": "#/components/schemas/AssignedMaterialsItem"
+            },
+            "title": "Participant Assigned Materials",
+            "type": "array"
+          },
+          "participant_response": {
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "items": {},
+                  "type": "array"
+                },
+                {
+                  "additionalProperties": true,
+                  "type": "object"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "title": "Participant Response",
+            "type": "object"
+          },
+          "public_participant_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Public Participant Id"
+          },
+          "public_response_id": {
+            "title": "Public Response Id",
+            "type": "string"
+          },
+          "response_valid": {
+            "title": "Response Valid",
+            "type": "boolean"
+          },
+          "segments": {
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "items": {},
+                  "type": "array"
+                },
+                {
+                  "additionalProperties": true,
+                  "type": "object"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "title": "Segments",
+            "type": "object"
+          }
+        },
+        "required": [
+          "id",
+          "public_response_id",
+          "assigned_materials",
+          "response_valid",
+          "segments",
+          "participant_assigned_materials",
+          "participant_response"
+        ],
+        "title": "ParticipantResultItem",
+        "type": "object"
+      },
+      "PresignedPostData": {
+        "properties": {
+          "fields": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "title": "Fields",
+            "type": "object"
+          },
+          "url": {
+            "title": "Url",
+            "type": "string"
+          }
+        },
+        "required": [
+          "url",
+          "fields"
+        ],
+        "title": "PresignedPostData",
+        "type": "object"
+      },
+      "PresignedUrlRequest": {
+        "examples": [
+          {
+            "file_type": "image/png",
+            "filename": "product_photo.png"
+          }
+        ],
+        "properties": {
+          "file_type": {
+            "description": "MIME type of the file. Supported types: image/*, video/*, audio/*, application/pdf, plus text/plain and DOCX as BBot question/text-stim source documents.",
+            "minLength": 1,
+            "title": "File Type",
+            "type": "string"
+          },
+          "filename": {
+            "minLength": 1,
+            "title": "Filename",
+            "type": "string"
+          }
+        },
+        "required": [
+          "filename",
+          "file_type"
+        ],
+        "title": "PresignedUrlRequest",
+        "type": "object"
+      },
+      "PresignedUrlResponse": {
+        "properties": {
+          "key": {
+            "title": "Key",
+            "type": "string"
+          },
+          "max_file_size": {
+            "title": "Max File Size",
+            "type": "integer"
+          },
+          "presigned_post_data": {
+            "$ref": "#/components/schemas/PresignedPostData"
+          }
+        },
+        "required": [
+          "presigned_post_data",
+          "max_file_size",
+          "key"
+        ],
+        "title": "PresignedUrlResponse",
+        "type": "object"
+      },
+      "QuestionItem": {
+        "additionalProperties": false,
+        "properties": {
+          "allowMultiple": {
+            "default": false,
+            "description": "Only applies when scale is 'multiple_choice'. When false (default), each persona selects exactly one option and the response is a single string. When true, each persona may select one or more options and the response is a JSON array of strings.",
+            "title": "Allowmultiple",
+            "type": "boolean"
+          },
+          "choice_matrix_rows": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Row labels for question_subtype 'choice_matrix'. Each row receives exactly one choice.",
+            "title": "Choice Matrix Rows"
+          },
+          "choices": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Required when scale is 'multiple_choice' or 'allocation' (party names, minimum 2 required). The list of answer options.",
+            "title": "Choices"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "question_subtype": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Optional subtype for question variants. Use 'choice_matrix' with scale 'multiple_choice' to ask one single-select choice per row.",
+            "title": "Question Subtype"
+          },
+          "questions": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Questions",
+            "type": "array"
+          },
+          "scale": {
+            "description": "The response scale type. Either a point scale (2 - 100 points) in the format: '<N> point scale (1 = <low label>; <N> = <high label>)', or amount scale in the format: 'amount scale (<$ or \u00a3 or \u00a5><min amount> - <$ or \u00a3 or \u00a5><max amount>)', or one of the keywords: 'qualitative', 'multiple_choice', 'allocation'.",
+            "examples": [
+              "qualitative",
+              "multiple_choice",
+              "2 point scale (1 = No; 2 = Yes)",
+              "3 point scale (1 = 1 star; 3 = 3 stars)",
+              "5 point scale (1 = 1 star; 5 = 5 stars)",
+              "7 point scale (1 = Not at all appealing; 7 = Extremely appealing)",
+              "9 point scale (1 = Not at all likely; 9 = Extremely likely)",
+              "100 point scale (1 = Not at all likely; 100 = Extremely likely)",
+              "amount scale ($5 - $100)",
+              "amount scale (\u00a320 - \u00a3200)",
+              "amount scale ($)",
+              "allocation"
+            ],
+            "pattern": "^(?:qualitative|ranking|points_allocation|allocation|matrix|multiple_choice|(?:100|[1-9]\\d|[2-9]) point scale \\(1 = [^\\r\\n;]+; (?:100|[1-9]\\d|[2-9]) = [^\\r\\n)]+\\)|amount scale \\(\\$-?\\d+(?:\\.\\d+)? - \\$-?\\d+(?:\\.\\d+)?\\)|amount scale \\(\u00a3-?\\d+(?:\\.\\d+)? - \u00a3-?\\d+(?:\\.\\d+)?\\)|amount scale \\(\u00a5-?\\d+(?:\\.\\d+)? - \u00a5-?\\d+(?:\\.\\d+)?\\)|amount scale \\(\\$\\)|amount scale \\(\u00a3\\)|amount scale \\(\u20ac\\)|amount scale \\(\u00a5\\))$",
+            "title": "Scale",
+            "type": "string"
+          },
+          "sequenceOpenTextMode": {
+            "anyOf": [
+              {
+                "enum": [
+                  "per_stimulus",
+                  "overall"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Only applies to qualitative questions in sequence studies. 'per_stimulus' asks once for each sequence item; 'overall' asks one overall open-ended question.",
+            "title": "Sequenceopentextmode"
+          }
+        },
+        "required": [
+          "name",
+          "questions",
+          "scale"
+        ],
+        "title": "QuestionItem",
+        "type": "object"
+      },
+      "SegmentItem": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "subcategories": {
+            "items": {
+              "$ref": "#/components/schemas/SegmentSubCategoryItem"
+            },
+            "title": "Subcategories",
+            "type": "array"
+          }
+        },
+        "required": [
+          "name",
+          "subcategories"
+        ],
+        "title": "SegmentItem",
+        "type": "object"
+      },
+      "SegmentSubCategoryItem": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "percentage": {
+            "title": "Percentage",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "name",
+          "percentage"
+        ],
+        "title": "SegmentSubCategoryItem",
+        "type": "object"
+      },
+      "StimulusItem": {
+        "properties": {
+          "caption": {
+            "default": "",
+            "title": "Caption",
+            "type": "string"
+          },
+          "materials_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Materials Name"
+          },
+          "media": {
+            "description": "Text stimulus, a URL string, or an object with url/type/name",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "$ref": "#/components/schemas/MediaItem"
+                }
+              ]
+            },
+            "title": "Media",
+            "type": "array"
+          },
+          "stimulus_name": {
+            "title": "Stimulus Name",
+            "type": "string"
+          },
+          "stimulus_type": {
+            "enum": [
+              "text",
+              "image",
+              "video",
+              "audio",
+              "pdf"
+            ],
+            "title": "Stimulus Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "stimulus_name",
+          "stimulus_type",
+          "media"
+        ],
+        "title": "StimulusItem",
+        "type": "object"
+      },
+      "StudyDetailsResponse": {
+        "properties": {
+          "added_captions": {
+            "items": {
+              "$ref": "#/components/schemas/CaptionResponse"
+            },
+            "title": "Added Captions",
+            "type": "array"
+          },
+          "age_parameters": {
+            "$ref": "#/components/schemas/AgeParametersItem"
+          },
+          "assigned_materials": {
+            "items": {
+              "$ref": "#/components/schemas/AssignedMaterialsItem"
+            },
+            "title": "Assigned Materials",
+            "type": "array"
+          },
+          "jury_panel_size": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Jury Panel Size"
+          },
+          "log_to_memory": {
+            "default": true,
+            "title": "Log To Memory",
+            "type": "boolean"
+          },
+          "num_participants_in_paper": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Num Participants In Paper"
+          },
+          "number_participants": {
+            "title": "Number Participants",
+            "type": "integer"
+          },
+          "persona_context": {
+            "default": "",
+            "title": "Persona Context",
+            "type": "string"
+          },
+          "question_blocks": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Question Blocks"
+          },
+          "question_groups": {
+            "items": {
+              "$ref": "#/components/schemas/QuestionItem"
+            },
+            "title": "Question Groups",
+            "type": "array"
+          },
+          "research_goal": {
+            "default": "",
+            "title": "Research Goal",
+            "type": "string"
+          },
+          "segments": {
+            "items": {
+              "$ref": "#/components/schemas/SegmentItem"
+            },
+            "title": "Segments",
+            "type": "array"
+          },
+          "stimuli_prompt_append": {
+            "default": "",
+            "title": "Stimuli Prompt Append",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "uploaded_audios": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/UploadedMediaItem"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Uploaded Audios"
+          },
+          "uploaded_images": {
+            "items": {
+              "$ref": "#/components/schemas/UploadedMediaItem"
+            },
+            "title": "Uploaded Images",
+            "type": "array"
+          },
+          "uploaded_participants": {
+            "anyOf": [
+              {
+                "items": {},
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Uploaded Participants"
+          },
+          "uploaded_pdfs": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/UploadedMediaItem"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Uploaded Pdfs"
+          },
+          "uploaded_videos": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/UploadedMediaItem"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Uploaded Videos"
+          }
+        },
+        "required": [
+          "title",
+          "number_participants",
+          "age_parameters",
+          "assigned_materials",
+          "uploaded_images",
+          "added_captions",
+          "segments",
+          "question_groups"
+        ],
+        "title": "StudyDetailsResponse",
+        "type": "object"
+      },
+      "StudyScheduleResponse": {
+        "properties": {
+          "enabled": {
+            "title": "Enabled",
+            "type": "boolean"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "next_scheduled_run": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Next Scheduled Run"
+          },
+          "repeat_interval": {
+            "anyOf": [
+              {
+                "enum": [
+                  7,
+                  14,
+                  30
+                ],
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Repeat Interval"
+          },
+          "source_study_id": {
+            "title": "Source Study Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "source_study_id",
+          "enabled"
+        ],
+        "title": "StudyScheduleResponse",
+        "type": "object"
+      },
+      "TextCaptionItem": {
+        "description": "Text stimulus to be included in the study",
+        "properties": {
+          "caption": {
+            "default": "",
+            "title": "Caption",
+            "type": "string"
+          },
+          "content": {
+            "default": "",
+            "title": "Content",
+            "type": "string"
+          },
+          "is_sequential": {
+            "default": false,
+            "title": "Is Sequential",
+            "type": "boolean"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "title": "TextCaptionItem",
+        "type": "object"
+      },
+      "UpdateStudyScheduleRequest": {
+        "properties": {
+          "enabled": {
+            "title": "Enabled",
+            "type": "boolean"
+          },
+          "repeat_interval": {
+            "anyOf": [
+              {
+                "enum": [
+                  7,
+                  14,
+                  30
+                ],
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Repeat Interval"
+          }
+        },
+        "required": [
+          "enabled"
+        ],
+        "title": "UpdateStudyScheduleRequest",
+        "type": "object"
+      },
+      "UploadedMediaItem": {
+        "description": "Media stimulus to be included in the study",
+        "properties": {
+          "caption": {
+            "default": "",
+            "title": "Caption",
+            "type": "string"
+          },
+          "is_sequential": {
+            "default": false,
+            "title": "Is Sequential",
+            "type": "boolean"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "url": {
+            "title": "Url",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "url"
+        ],
+        "title": "UploadedMediaItem",
+        "type": "object"
+      },
+      "ValidationError": {
+        "description": "Model of a validation error response.",
+        "items": {
+          "$ref": "#/components/schemas/ValidationErrorElement"
+        },
+        "title": "ValidationError",
+        "type": "array"
+      },
+      "ValidationErrorElement": {
+        "description": "Model of a validation error response element.",
+        "properties": {
+          "ctx": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Error context"
+          },
+          "loc": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Missing field name",
+            "type": "array"
+          },
+          "msg": {
+            "title": "Error message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationErrorElement",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "apiKey": {
+        "in": "header",
+        "name": "X-API-Key",
+        "type": "apiKey"
+      },
+      "bearerAuth": {
+        "bearerFormat": "JWT",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "The Viewpoints Study API allows you to programmatically create and retrieve AI-powered research studies with simulated participants.\n\n## Authentication\n\n- **API Key** \u2014 pass your key in the `X-API-Key` header\nTo obtain an API key, visit your account settings in the Viewpoints dashboard.\n\n## Workflow\n\n1. **Upload stimuli** (optional, not needed for text only stimuli) \u2014 use the presigned URL endpoint to upload images, video, audio, or PDFs to S3\n2. **Create a study** \u2014 submit your study configuration with audience segments, assigned materials, and questions\n3. **Poll for completion** \u2014 use the job status endpoint to track progress and get completed study ID\n4. **Retrieve results** \u2014 once complete, fetch the full study results with all participant responses using the study ID",
+    "title": "Viewpoints Study API",
+    "version": "1.0.0"
+  },
+  "openapi": "3.1.0",
+  "paths": {
+    "/v1/studies": {
+      "post": {
+        "description": "Launch a new study with the given parameters. Upload file stimuli via the presigned URL endpoint first and include the resulting S3 keys as URLs. Returns a job ID for tracking study creation progress via the job status endpoint.",
+        "operationId": "post__v1_studies",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateStudyRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateStudyResponse"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Validation error (invalid fields, too many characters, etc.)"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Authentication failed"
+          },
+          "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Entitlement limit exceeded (participants, questions, or question type not allowed by current plan)"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not authorized"
+          }
+        },
+        "summary": "Create a new study",
+        "tags": [
+          "Studies"
+        ]
+      }
+    },
+    "/v1/studies/jobs/{job_id}": {
+      "get": {
+        "description": "Poll the status of a study creation job. Returns `processing` while the study is being generated, `completed` with the study ID when done, or `failed` if an error occurred.",
+        "operationId": "get__v1_studies_jobs_{job_id}",
+        "parameters": [
+          {
+            "description": "The job ID returned by the create study endpoint",
+            "in": "path",
+            "name": "job_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobStatusResponse"
+                }
+              }
+            },
+            "description": "Job completed or failed"
+          },
+          "202": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobStatusResponse"
+                }
+              }
+            },
+            "description": "Job still processing"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Bad request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Authentication failed"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Job not found"
+          }
+        },
+        "summary": "Get study creation job status",
+        "tags": [
+          "Studies"
+        ]
+      }
+    },
+    "/v1/studies/uploads/presigned-url": {
+      "post": {
+        "description": "Generate a pre-signed S3 URL for uploading study stimuli files. Use the returned URL and fields to upload the file via a multipart POST directly to S3, then include the S3 key in the create study request.",
+        "operationId": "post__v1_studies_uploads_presigned-url",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PresignedUrlRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PresignedUrlResponse"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Validation error or unsupported file type"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Authentication failed"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not authorized"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Upload rate limit exceeded"
+          }
+        },
+        "summary": "Get presigned upload URL",
+        "tags": [
+          "Study File Uploads"
+        ]
+      }
+    },
+    "/v1/studies/{id}": {
+      "get": {
+        "description": "Retrieve study configuration and all participant responses.",
+        "operationId": "get__v1_studies_{id}",
+        "parameters": [
+          {
+            "description": "The UUID of the study to retrieve",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetStudyResponse"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Bad request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Authentication failed"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not authorized to view this study"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Study not found"
+          }
+        },
+        "summary": "Get study results",
+        "tags": [
+          "Studies"
+        ]
+      },
+      "put": {
+        "description": "Replace the full configuration of an existing draft study. The same `launch` flag accepted by POST /v1/studies controls whether this also enqueues the background job: launch=false keeps the study as a draft, launch=true flips it to running and starts execution. Returns 409 if the study has already been launched (status != 'draft'), or if `expected_version` is provided and another save has bumped the draft's version since it was read.",
+        "operationId": "put__v1_studies_{id}",
+        "parameters": [
+          {
+            "description": "",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateStudyRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateStudyResponse"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Validation error"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Authentication failed"
+          },
+          "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Entitlement limit exceeded"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not authorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Study not found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Study is not a draft"
+          }
+        },
+        "summary": "Replace a draft study",
+        "tags": [
+          "Studies"
+        ]
+      }
+    },
+    "/v1/study-schedules/{schedule_id}": {
+      "get": {
+        "description": "Retrieve the current configuration of a study schedule.",
+        "operationId": "get__v1_study-schedules_{schedule_id}",
+        "parameters": [
+          {
+            "description": "The UUID of the study schedule",
+            "in": "path",
+            "name": "schedule_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StudyScheduleResponse"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Authentication failed"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not authorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Schedule not found"
+          }
+        },
+        "summary": "Get a study schedule",
+        "tags": [
+          "Study Schedules"
+        ]
+      }
+    },
+    "/v1/study-schedules/{study_id}": {
+      "put": {
+        "description": "Creates a new schedule for the study if one doesn't exist, or updates the existing schedule. The study must belong to the authenticated user. When enabled, next_scheduled_run is set to now plus the repeat interval. When disabled, next_scheduled_run is cleared.",
+        "operationId": "put__v1_study-schedules_{study_id}",
+        "parameters": [
+          {
+            "description": "The UUID of the study to schedule",
+            "in": "path",
+            "name": "study_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateStudyScheduleRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StudyScheduleResponse"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Validation error"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Authentication failed"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not authorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Study not found"
+          }
+        },
+        "summary": "Create or update a study schedule",
+        "tags": [
+          "Study Schedules"
+        ]
+      }
+    }
+  },
+  "security": [
+    {
+      "apiKey": []
+    },
+    {
+      "bearerAuth": []
+    }
+  ],
+  "tags": [
+    {
+      "description": "Upload stimuli files for use in studies",
+      "name": "Study File Uploads"
+    },
+    {
+      "description": "Create studies and retrieve results",
+      "name": "Studies"
+    },
+    {
+      "description": "Manage recurring study schedules",
+      "name": "Study Schedules"
+    }
+  ]
+}

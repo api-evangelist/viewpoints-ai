@@ -1,0 +1,18 @@
+generated: '2026-07-21'
+method: generated
+source: openapi/viewpoints-ai-study-openapi.json
+skills:
+- file: viewpoints-ai-run-study.md
+  name: Run a Viewpoints study and retrieve results
+  api: openapi/viewpoints-ai-study-openapi.json
+  operations:
+  - post__v1_studies_uploads_presigned-url
+  - post__v1_studies
+  - get__v1_studies_jobs_{job_id}
+  - get__v1_studies_{id}
+- file: viewpoints-ai-schedule-recurring-study.md
+  name: Schedule a recurring Viewpoints study
+  api: openapi/viewpoints-ai-study-openapi.json
+  operations:
+  - put__v1_study-schedules_{study_id}
+  - get__v1_study-schedules_{schedule_id}

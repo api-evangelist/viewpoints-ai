@@ -1,27 +1,138 @@
 aid: viewpoints-ai
 name: Viewpoints AI
-description: 'Viewpoints AI is a company surfaced as a portfolio company of forerunner-ventures and added
-  to the API Evangelist network as a stub for enrichment. Sector: ai. This profile is a lead awaiting
-  the enrichment pipeline.'
+description: >-
+  Viewpoints AI (viewpoints.ai) is a Stanford-founded research platform that runs
+  AI jury simulations for litigation teams and AI audience panels for market
+  researchers. Companies upload case materials or creative/marketing stimuli and a
+  representative panel of simulated personas reads them, deliberates, and returns
+  verdict or response distributions, the themes driving them, and per-participant
+  reasoning — same-day, with a claimed 88% match to real studies (Stanford-validated).
+  The Viewpoints Study API lets developers programmatically create studies, upload
+  stimuli, poll asynchronous creation jobs, retrieve full participant results, and
+  schedule recurring runs. SOC 2 Type II. Backed by Forerunner Ventures.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://viewpoints.ai/og-image-2.png
 url: https://raw.githubusercontent.com/api-evangelist/viewpoints-ai/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - forerunner-ventures
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: profiled
+x-tier-reason: real-api-enriched
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
 - Ai
-apis: []
+- Market Research
+- Synthetic Personas
+- Consumer Insights
+- Litigation
+- Jury Simulation
+- Research
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: viewpoints-ai:viewpoints-ai-studies-api
+  name: Viewpoints AI Studies API
+  description: Create studies and retrieve results
+  humanURL: https://api.viewpoints.ai
+  baseURL: https://api.viewpoints.ai
+  tags:
+  - Studies
+  properties:
+  - type: OpenAPI
+    url: openapi/viewpoints-ai-studies-api-openapi.yml
+  - type: Documentation
+    url: https://api.viewpoints.ai
+  - type: APIReference
+    url: https://api.viewpoints.ai
+- aid: viewpoints-ai:viewpoints-ai-study-file-uploads-api
+  name: Viewpoints AI Study File Uploads API
+  description: Upload stimuli files for use in studies
+  humanURL: https://api.viewpoints.ai
+  baseURL: https://api.viewpoints.ai
+  tags:
+  - Study File Uploads
+  properties:
+  - type: OpenAPI
+    url: openapi/viewpoints-ai-study-file-uploads-api-openapi.yml
+  - type: Documentation
+    url: https://api.viewpoints.ai
+  - type: APIReference
+    url: https://api.viewpoints.ai
+- aid: viewpoints-ai:viewpoints-ai-study-schedules-api
+  name: Viewpoints AI Study Schedules API
+  description: Manage recurring study schedules
+  humanURL: https://api.viewpoints.ai
+  baseURL: https://api.viewpoints.ai
+  tags:
+  - Study Schedules
+  properties:
+  - type: OpenAPI
+    url: openapi/viewpoints-ai-study-schedules-api-openapi.yml
+  - type: Documentation
+    url: https://api.viewpoints.ai
+  - type: APIReference
+    url: https://api.viewpoints.ai
 common:
+- type: DeveloperPortal
+  url: https://api.viewpoints.ai
+- type: Documentation
+  url: https://api.viewpoints.ai
+- type: APIReference
+  url: https://api.viewpoints.ai
+- type: Login
+  url: https://app.viewpoints.ai/
+- type: TermsOfService
+  url: https://viewpoints.ai/terms.html
+- type: PrivacyPolicy
+  url: https://viewpoints.ai/privacy.html
+- type: Compliance
+  url: https://viewpoints.ai/
+- type: LLMsTxt
+  url: llms/viewpoints-ai-llms.txt
+- type: Authentication
+  url: authentication/viewpoints-ai-authentication.yml
+- type: AgenticAccess
+  url: agentic-access/viewpoints-ai-agentic-access.yml
+- type: ErrorCatalog
+  url: errors/viewpoints-ai-problem-types.yml
+- type: Conventions
+  url: conventions/viewpoints-ai-conventions.yml
+- type: Lifecycle
+  url: lifecycle/viewpoints-ai-lifecycle.yml
+- type: DataModel
+  url: data-model/viewpoints-ai-data-model.yml
+- type: MCPServer
+  url: mcp/viewpoints-ai-mcp.yml
+- type: Overlay
+  url: overlays/viewpoints-ai-study-overlay.yaml
+- type: Conformance
+  url: conformance/viewpoints-ai-conformance.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: DomainSecurity
+  url: security/viewpoints-ai-domain-security.yml
 - type: Website
   url: https://viewpoints.ai
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 13
+  pass: local-v1

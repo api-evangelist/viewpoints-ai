@@ -1,0 +1,18 @@
+{
+  "provider": "viewpoints-ai",
+  "sources": [
+    "viewpoints-ai-studies-api-openapi.yml",
+    "viewpoints-ai-study-file-uploads-api-openapi.yml",
+    "viewpoints-ai-study-schedules-api-openapi.yml"
+  ],
+  "outputs": [
+    "viewpoints-ai-studies-api-openapi.yml",
+    "viewpoints-ai-study-file-uploads-api-openapi.yml",
+    "viewpoints-ai-study-schedules-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

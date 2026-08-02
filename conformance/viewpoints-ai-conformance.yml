@@ -1,0 +1,25 @@
+generated: '2026-07-21'
+method: searched
+source: https://viewpoints.ai/
+# Standards/compliance posture. Auth/error facts derived from the OpenAPI; the compliance
+# claim (SOC 2 Type II) is published verbatim on viewpoints.ai and in /llms.txt.
+standards:
+- id: soc2-type-ii
+  conforms: true
+  evidence: 'SOC 2 Type II stated on viewpoints.ai homepage and /llms.txt ("SOC 2 Type II. Patented.")'
+- id: apikey-auth
+  conforms: true
+  evidence: OpenAPI securityScheme apiKey (X-API-Key header)
+- id: bearer-jwt
+  conforms: true
+  evidence: OpenAPI securityScheme http bearer, bearerFormat JWT
+- id: oauth2
+  conforms: false
+- id: openid-connect
+  conforms: false
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Errors use a custom {error, details} envelope, not application/problem+json.
+compliance_program:
+  soc2_type_ii: true
+  published_at: https://viewpoints.ai/

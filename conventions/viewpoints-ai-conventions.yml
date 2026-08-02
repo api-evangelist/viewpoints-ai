@@ -1,0 +1,38 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/viewpoints-ai-study-openapi.json
+# Cross-cutting request/response semantics for the Viewpoints Study API.
+authentication:
+  style: api-key
+  header: X-API-Key
+  alternate: 'bearer JWT (Authorization: Bearer)'
+  see: authentication/viewpoints-ai-authentication.yml
+versioning:
+  scheme: uri-path
+  current: v1
+  spec_version: 1.0.0
+async:
+  # Study creation is asynchronous: POST returns a job, poll the job endpoint until complete.
+  pattern: job-polling
+  create_operation: post__v1_studies
+  poll_operation: get__v1_studies_jobs_{job_id}
+  poll_semantics: 202 while processing, 200 when the job has completed or failed
+  result_operation: get__v1_studies_{id}
+uploads:
+  # Binary stimuli (images/video/audio/PDF) are uploaded to S3 via a presigned POST.
+  pattern: presigned-s3-upload
+  operation: post__v1_studies_uploads_presigned-url
+  note: Text-only stimuli do not require an upload.
+idempotency:
+  supported: false
+  note: No idempotency key header or parameter is documented in the OpenAPI. Draft studies use PUT (naturally idempotent replace) guarded by a 409 when the study is no longer a draft.
+pagination:
+  supported: false
+  note: No collection-list/pagination endpoints are declared; resources are fetched by id.
+error_envelope:
+  schema: ErrorResponse
+  shape: '{"error": string, "details": string|null}'
+  see: errors/viewpoints-ai-problem-types.yml
+rate_limiting:
+  signaled: true
+  note: The presigned-upload endpoint returns 429 (Upload rate limit exceeded). No rate-limit response headers are documented in the spec.

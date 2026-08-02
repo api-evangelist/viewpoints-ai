@@ -1,0 +1,35 @@
+generated: '2026-07-21'
+method: derived
+status: candidate
+source: openapi/viewpoints-ai-study-openapi.json
+# No official hosted/remote MCP server was found for Viewpoints AI. These tools are a
+# candidate surface derived one-per-operation from the Viewpoints Study API OpenAPI.
+server:
+  name: viewpoints-ai
+  transport: http
+  url: null
+auth:
+  type: apiKey
+  header: X-API-Key
+tools:
+- name: create_study
+  description: Create a new AI research/jury-simulation study.
+  source_operation: openapi/viewpoints-ai-study-openapi.json#post__v1_studies
+- name: get_study_job_status
+  description: Get the status of an asynchronous study-creation job.
+  source_operation: openapi/viewpoints-ai-study-openapi.json#get__v1_studies_jobs_{job_id}
+- name: create_presigned_upload_url
+  description: Get a presigned URL to upload image/video/audio/PDF stimuli to S3.
+  source_operation: openapi/viewpoints-ai-study-openapi.json#post__v1_studies_uploads_presigned-url
+- name: get_study_results
+  description: Retrieve full study results with all simulated participant responses.
+  source_operation: openapi/viewpoints-ai-study-openapi.json#get__v1_studies_{id}
+- name: replace_draft_study
+  description: Replace a draft study configuration.
+  source_operation: openapi/viewpoints-ai-study-openapi.json#put__v1_studies_{id}
+- name: get_study_schedule
+  description: Get a recurring study schedule.
+  source_operation: openapi/viewpoints-ai-study-openapi.json#get__v1_study-schedules_{schedule_id}
+- name: upsert_study_schedule
+  description: Create or update a recurring study schedule.
+  source_operation: openapi/viewpoints-ai-study-openapi.json#put__v1_study-schedules_{study_id}

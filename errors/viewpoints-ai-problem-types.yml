@@ -1,0 +1,72 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/viewpoints-ai-study-openapi.json
+# The Viewpoints Study API returns a custom JSON error envelope (not RFC 9457).
+format: custom
+envelope:
+  schema: ErrorResponse
+  fields:
+    error: Human-readable error string (required)
+    details: Optional additional context (string, nullable)
+  example: '{"error": "Authentication failed", "details": null}'
+problems:
+- status: 400
+  title: Validation error
+  meaning: Invalid fields, too many characters, unsupported file type, or otherwise malformed request.
+  source_operations:
+  - post__v1_studies
+  - put__v1_studies_{id}
+  - post__v1_studies_uploads_presigned-url
+  - get__v1_studies_{id}
+  - get__v1_studies_jobs_{job_id}
+  - get__v1_study-schedules_{schedule_id}
+  - put__v1_study-schedules_{study_id}
+- status: 401
+  title: Authentication failed
+  meaning: Missing or invalid X-API-Key header (or bearer JWT).
+  remediation: Supply a valid API key in the X-API-Key header from your Viewpoints dashboard account settings.
+  source_operations:
+  - post__v1_studies
+  - get__v1_studies_jobs_{job_id}
+  - post__v1_studies_uploads_presigned-url
+  - get__v1_studies_{id}
+  - put__v1_studies_{id}
+  - get__v1_study-schedules_{schedule_id}
+  - put__v1_study-schedules_{study_id}
+- status: 402
+  title: Entitlement limit exceeded
+  meaning: Participants, questions, or question type not allowed by the current plan.
+  remediation: Reduce study size/questions or upgrade the account plan.
+  source_operations:
+  - post__v1_studies
+  - put__v1_studies_{id}
+- status: 403
+  title: Not authorized
+  meaning: The authenticated caller is not authorized for the resource or action (e.g. not authorized to view this study).
+  source_operations:
+  - post__v1_studies
+  - post__v1_studies_uploads_presigned-url
+  - get__v1_studies_{id}
+  - put__v1_studies_{id}
+  - get__v1_study-schedules_{schedule_id}
+  - put__v1_study-schedules_{study_id}
+- status: 404
+  title: Not found
+  meaning: The referenced study, job, or schedule does not exist.
+  source_operations:
+  - get__v1_studies_jobs_{job_id}
+  - get__v1_studies_{id}
+  - put__v1_studies_{id}
+  - get__v1_study-schedules_{schedule_id}
+  - put__v1_study-schedules_{study_id}
+- status: 409
+  title: Study is not a draft
+  meaning: A study can only be replaced while it is still a draft.
+  source_operations:
+  - put__v1_studies_{id}
+- status: 429
+  title: Upload rate limit exceeded
+  meaning: Too many presigned-upload requests in the current window.
+  remediation: Back off and retry the presigned-url request after a delay.
+  source_operations:
+  - post__v1_studies_uploads_presigned-url

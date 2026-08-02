@@ -1,0 +1,16 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/viewpoints-ai-study-openapi.json
+versioning:
+  scheme: uri-path
+  current: v1
+  spec_version: 1.0.0
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No deprecation policy or RFC 8594 Sunset/Deprecation header support was found in the spec or docs.
+sla:
+  url: null
+status_page: null
+deprecated_operations: []
+notes: No public status page, SLA, or deprecation policy was found for Viewpoints AI as of this pass.

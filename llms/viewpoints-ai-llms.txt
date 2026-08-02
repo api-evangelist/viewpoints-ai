@@ -1,0 +1,29 @@
+# Viewpoints.ai
+
+> Viewpoints.ai runs AI jury simulations for litigation teams and
+> AI audience panels for market researchers. Upload case materials;
+> a representative panel of simulated jurors reads them, deliberates,
+> and returns the verdict distribution, the themes driving it, and
+> juror-by-juror reasoning. Change the venue or the opening and run
+> it again the same afternoon. SOC 2 Type II. Patented.
+
+## Products
+
+- [AI Jury Simulation](https://viewpoints.ai/jury-sim): simulated mock
+  juries for trial teams, insurers, and general counsel. Themes,
+  verdict distributions, deliberation dynamics, venue-matched panels.
+- [AI Market Research](https://viewpoints.ai/market-research):
+  synthetic personas for concept, message, and creative testing.
+
+## Evidence
+
+- [Human vs. machine mock trial (DRI 2026)](https://viewpoints.ai/viewpoints-dri-for-the-defense.pdf):
+  live head-to-head; the simulated panel matched the human mock jury's
+  defense verdict and surfaced the same leading themes.
+- [Case studies](https://viewpoints.ai/case-studies)
+
+## Company
+
+- [About](https://viewpoints.ai/about): founded by Leo Yeykelis
+  (Stanford PhD in Human-Computer Interaction), with Stanford
+  professor Byron Reeves as strategic advisor.
