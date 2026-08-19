@@ -1,0 +1,1469 @@
+{
+  "item": [
+    {
+      "id": "d205b895-fbec-40e8-9d58-d89fee3d670a",
+      "name": "Studies",
+      "description": {
+        "content": "Create studies and retrieve results",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5d81042b-ad1f-4e47-95c8-3b272f271e13",
+          "name": "Create a new study",
+          "request": {
+            "name": "Create a new study",
+            "description": {
+              "content": "Launch a new study with the given parameters. Upload file stimuli via the presigned URL endpoint first and include the resulting S3 keys as URLs. Returns a job ID for tracking study creation progress via the job status endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "studies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"<string>\",\n  \"uploaded_images\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"uploaded_videos\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"uploaded_audios\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"uploaded_pdfs\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"added_captions\": [\n    {\n      \"name\": \"<string>\",\n      \"caption\": \"\",\n      \"content\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"<string>\",\n      \"caption\": \"\",\n      \"content\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"segments\": [\n    {\n      \"name\": \"<string>\",\n      \"subcategories\": [\n        {\n          \"name\": \"<string>\",\n          \"percentage\": \"<integer>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"percentage\": \"<integer>\"\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"subcategories\": [\n        {\n          \"name\": \"<string>\",\n          \"percentage\": \"<integer>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"percentage\": \"<integer>\"\n        }\n      ]\n    }\n  ],\n  \"age_parameters\": {\n    \"min_age\": \"<integer>\",\n    \"max_age\": \"<integer>\",\n    \"mean\": \"<number>\",\n    \"st_dev\": \"<number>\",\n    \"venue\": \"<string>\"\n  },\n  \"assigned_materials\": [\n    {\n      \"materials_name\": \"<string>\",\n      \"stimuli\": [\n        {\n          \"stimulus_name\": \"<string>\",\n          \"stimulus_type\": \"<string>\",\n          \"media\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"<string>\"\n        },\n        {\n          \"stimulus_name\": \"<string>\",\n          \"stimulus_type\": \"<string>\",\n          \"media\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"materials_name\": \"<string>\",\n      \"stimuli\": [\n        {\n          \"stimulus_name\": \"<string>\",\n          \"stimulus_type\": \"<string>\",\n          \"media\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"<string>\"\n        },\n        {\n          \"stimulus_name\": \"<string>\",\n          \"stimulus_type\": \"<string>\",\n          \"media\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"question_groups\": [\n    {\n      \"name\": \"<string>\",\n      \"questions\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"scale\": \"<string>\",\n      \"allowMultiple\": false,\n      \"choice_matrix_rows\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"choices\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"question_subtype\": \"<string>\",\n      \"sequenceOpenTextMode\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"questions\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"scale\": \"<string>\",\n      \"allowMultiple\": false,\n      \"choice_matrix_rows\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"choices\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"question_subtype\": \"<string>\",\n      \"sequenceOpenTextMode\": \"<string>\"\n    }\n  ],\n  \"number_participants\": \"<integer>\",\n  \"expected_version\": \"<integer>\",\n  \"generate_life_stories\": true,\n  \"launch\": true,\n  \"persona_context\": \"\",\n  \"research_goal\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6d1b2a86-bbc2-4b01-ab05-693f52f85564",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "studies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"uploaded_images\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"uploaded_videos\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"uploaded_audios\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"uploaded_pdfs\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"added_captions\": [\n    {\n      \"name\": \"string\",\n      \"caption\": \"\",\n      \"content\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"caption\": \"\",\n      \"content\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"segments\": [\n    {\n      \"name\": \"string\",\n      \"subcategories\": [\n        {\n          \"name\": \"string\",\n          \"percentage\": 3018\n        },\n        {\n          \"name\": \"string\",\n          \"percentage\": 7785\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"subcategories\": [\n        {\n          \"name\": \"string\",\n          \"percentage\": 3314\n        },\n        {\n          \"name\": \"string\",\n          \"percentage\": 6040\n        }\n      ]\n    }\n  ],\n  \"age_parameters\": {\n    \"min_age\": 3667,\n    \"max_age\": 8091,\n    \"mean\": 5799.875819909067,\n    \"st_dev\": 2036.9489931030994,\n    \"venue\": \"string\"\n  },\n  \"assigned_materials\": [\n    {\n      \"materials_name\": \"string\",\n      \"stimuli\": [\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"image\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        },\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"text\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        }\n      ]\n    },\n    {\n      \"materials_name\": \"string\",\n      \"stimuli\": [\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"pdf\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        },\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"video\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"question_groups\": [\n    {\n      \"name\": \"string\",\n      \"questions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"scale\": \"qualitative\",\n      \"allowMultiple\": false,\n      \"choice_matrix_rows\": [\n        \"string\",\n        \"string\"\n      ],\n      \"choices\": [\n        \"string\",\n        \"string\"\n      ],\n      \"question_subtype\": \"string\",\n      \"sequenceOpenTextMode\": \"overall\"\n    },\n    {\n      \"name\": \"string\",\n      \"questions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"scale\": \"qualitative\",\n      \"allowMultiple\": false,\n      \"choice_matrix_rows\": [\n        \"string\",\n        \"string\"\n      ],\n      \"choices\": [\n        \"string\",\n        \"string\"\n      ],\n      \"question_subtype\": \"string\",\n      \"sequenceOpenTextMode\": \"overall\"\n    }\n  ],\n  \"number_participants\": \"<integer>\",\n  \"expected_version\": \"<integer>\",\n  \"generate_life_stories\": true,\n  \"launch\": true,\n  \"persona_context\": \"\",\n  \"research_goal\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"study_id\": \"string\",\n  \"job_id\": \"string\",\n  \"version\": 3272\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6651a7d9-3a07-4086-8039-a16e62d65987",
+              "name": "Validation error (invalid fields, too many characters, etc.)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "studies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"uploaded_images\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"uploaded_videos\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"uploaded_audios\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"uploaded_pdfs\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"added_captions\": [\n    {\n      \"name\": \"string\",\n      \"caption\": \"\",\n      \"content\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"caption\": \"\",\n      \"content\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"segments\": [\n    {\n      \"name\": \"string\",\n      \"subcategories\": [\n        {\n          \"name\": \"string\",\n          \"percentage\": 3018\n        },\n        {\n          \"name\": \"string\",\n          \"percentage\": 7785\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"subcategories\": [\n        {\n          \"name\": \"string\",\n          \"percentage\": 3314\n        },\n        {\n          \"name\": \"string\",\n          \"percentage\": 6040\n        }\n      ]\n    }\n  ],\n  \"age_parameters\": {\n    \"min_age\": 3667,\n    \"max_age\": 8091,\n    \"mean\": 5799.875819909067,\n    \"st_dev\": 2036.9489931030994,\n    \"venue\": \"string\"\n  },\n  \"assigned_materials\": [\n    {\n      \"materials_name\": \"string\",\n      \"stimuli\": [\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"image\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        },\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"text\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        }\n      ]\n    },\n    {\n      \"materials_name\": \"string\",\n      \"stimuli\": [\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"pdf\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        },\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"video\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"question_groups\": [\n    {\n      \"name\": \"string\",\n      \"questions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"scale\": \"qualitative\",\n      \"allowMultiple\": false,\n      \"choice_matrix_rows\": [\n        \"string\",\n        \"string\"\n      ],\n      \"choices\": [\n        \"string\",\n        \"string\"\n      ],\n      \"question_subtype\": \"string\",\n      \"sequenceOpenTextMode\": \"overall\"\n    },\n    {\n      \"name\": \"string\",\n      \"questions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"scale\": \"qualitative\",\n      \"allowMultiple\": false,\n      \"choice_matrix_rows\": [\n        \"string\",\n        \"string\"\n      ],\n      \"choices\": [\n        \"string\",\n        \"string\"\n      ],\n      \"question_subtype\": \"string\",\n      \"sequenceOpenTextMode\": \"overall\"\n    }\n  ],\n  \"number_participants\": \"<integer>\",\n  \"expected_version\": \"<integer>\",\n  \"generate_life_stories\": true,\n  \"launch\": true,\n  \"persona_context\": \"\",\n  \"research_goal\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bb7d298a-b585-4d9e-a244-0bfa6e145a65",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "studies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"uploaded_images\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"uploaded_videos\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"uploaded_audios\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"uploaded_pdfs\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"added_captions\": [\n    {\n      \"name\": \"string\",\n      \"caption\": \"\",\n      \"content\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"caption\": \"\",\n      \"content\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"segments\": [\n    {\n      \"name\": \"string\",\n      \"subcategories\": [\n        {\n          \"name\": \"string\",\n          \"percentage\": 3018\n        },\n        {\n          \"name\": \"string\",\n          \"percentage\": 7785\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"subcategories\": [\n        {\n          \"name\": \"string\",\n          \"percentage\": 3314\n        },\n        {\n          \"name\": \"string\",\n          \"percentage\": 6040\n        }\n      ]\n    }\n  ],\n  \"age_parameters\": {\n    \"min_age\": 3667,\n    \"max_age\": 8091,\n    \"mean\": 5799.875819909067,\n    \"st_dev\": 2036.9489931030994,\n    \"venue\": \"string\"\n  },\n  \"assigned_materials\": [\n    {\n      \"materials_name\": \"string\",\n      \"stimuli\": [\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"image\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        },\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"text\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        }\n      ]\n    },\n    {\n      \"materials_name\": \"string\",\n      \"stimuli\": [\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"pdf\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        },\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"video\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"question_groups\": [\n    {\n      \"name\": \"string\",\n      \"questions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"scale\": \"qualitative\",\n      \"allowMultiple\": false,\n      \"choice_matrix_rows\": [\n        \"string\",\n        \"string\"\n      ],\n      \"choices\": [\n        \"string\",\n        \"string\"\n      ],\n      \"question_subtype\": \"string\",\n      \"sequenceOpenTextMode\": \"overall\"\n    },\n    {\n      \"name\": \"string\",\n      \"questions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"scale\": \"qualitative\",\n      \"allowMultiple\": false,\n      \"choice_matrix_rows\": [\n        \"string\",\n        \"string\"\n      ],\n      \"choices\": [\n        \"string\",\n        \"string\"\n      ],\n      \"question_subtype\": \"string\",\n      \"sequenceOpenTextMode\": \"overall\"\n    }\n  ],\n  \"number_participants\": \"<integer>\",\n  \"expected_version\": \"<integer>\",\n  \"generate_life_stories\": true,\n  \"launch\": true,\n  \"persona_context\": \"\",\n  \"research_goal\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ce233b5b-4705-4012-a329-ebebb378a7ea",
+              "name": "Entitlement limit exceeded (participants, questions, or question type not allowed by current plan)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "studies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"uploaded_images\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"uploaded_videos\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"uploaded_audios\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"uploaded_pdfs\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"added_captions\": [\n    {\n      \"name\": \"string\",\n      \"caption\": \"\",\n      \"content\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"caption\": \"\",\n      \"content\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"segments\": [\n    {\n      \"name\": \"string\",\n      \"subcategories\": [\n        {\n          \"name\": \"string\",\n          \"percentage\": 3018\n        },\n        {\n          \"name\": \"string\",\n          \"percentage\": 7785\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"subcategories\": [\n        {\n          \"name\": \"string\",\n          \"percentage\": 3314\n        },\n        {\n          \"name\": \"string\",\n          \"percentage\": 6040\n        }\n      ]\n    }\n  ],\n  \"age_parameters\": {\n    \"min_age\": 3667,\n    \"max_age\": 8091,\n    \"mean\": 5799.875819909067,\n    \"st_dev\": 2036.9489931030994,\n    \"venue\": \"string\"\n  },\n  \"assigned_materials\": [\n    {\n      \"materials_name\": \"string\",\n      \"stimuli\": [\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"image\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        },\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"text\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        }\n      ]\n    },\n    {\n      \"materials_name\": \"string\",\n      \"stimuli\": [\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"pdf\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        },\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"video\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"question_groups\": [\n    {\n      \"name\": \"string\",\n      \"questions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"scale\": \"qualitative\",\n      \"allowMultiple\": false,\n      \"choice_matrix_rows\": [\n        \"string\",\n        \"string\"\n      ],\n      \"choices\": [\n        \"string\",\n        \"string\"\n      ],\n      \"question_subtype\": \"string\",\n      \"sequenceOpenTextMode\": \"overall\"\n    },\n    {\n      \"name\": \"string\",\n      \"questions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"scale\": \"qualitative\",\n      \"allowMultiple\": false,\n      \"choice_matrix_rows\": [\n        \"string\",\n        \"string\"\n      ],\n      \"choices\": [\n        \"string\",\n        \"string\"\n      ],\n      \"question_subtype\": \"string\",\n      \"sequenceOpenTextMode\": \"overall\"\n    }\n  ],\n  \"number_participants\": \"<integer>\",\n  \"expected_version\": \"<integer>\",\n  \"generate_life_stories\": true,\n  \"launch\": true,\n  \"persona_context\": \"\",\n  \"research_goal\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Payment Required",
+              "code": 402,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "da58e4bf-55e1-49aa-85a9-06ac2cffce16",
+              "name": "Not authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "studies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"uploaded_images\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"uploaded_videos\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"uploaded_audios\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"uploaded_pdfs\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"added_captions\": [\n    {\n      \"name\": \"string\",\n      \"caption\": \"\",\n      \"content\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"caption\": \"\",\n      \"content\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"segments\": [\n    {\n      \"name\": \"string\",\n      \"subcategories\": [\n        {\n          \"name\": \"string\",\n          \"percentage\": 3018\n        },\n        {\n          \"name\": \"string\",\n          \"percentage\": 7785\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"subcategories\": [\n        {\n          \"name\": \"string\",\n          \"percentage\": 3314\n        },\n        {\n          \"name\": \"string\",\n          \"percentage\": 6040\n        }\n      ]\n    }\n  ],\n  \"age_parameters\": {\n    \"min_age\": 3667,\n    \"max_age\": 8091,\n    \"mean\": 5799.875819909067,\n    \"st_dev\": 2036.9489931030994,\n    \"venue\": \"string\"\n  },\n  \"assigned_materials\": [\n    {\n      \"materials_name\": \"string\",\n      \"stimuli\": [\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"image\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        },\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"text\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        }\n      ]\n    },\n    {\n      \"materials_name\": \"string\",\n      \"stimuli\": [\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"pdf\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        },\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"video\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"question_groups\": [\n    {\n      \"name\": \"string\",\n      \"questions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"scale\": \"qualitative\",\n      \"allowMultiple\": false,\n      \"choice_matrix_rows\": [\n        \"string\",\n        \"string\"\n      ],\n      \"choices\": [\n        \"string\",\n        \"string\"\n      ],\n      \"question_subtype\": \"string\",\n      \"sequenceOpenTextMode\": \"overall\"\n    },\n    {\n      \"name\": \"string\",\n      \"questions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"scale\": \"qualitative\",\n      \"allowMultiple\": false,\n      \"choice_matrix_rows\": [\n        \"string\",\n        \"string\"\n      ],\n      \"choices\": [\n        \"string\",\n        \"string\"\n      ],\n      \"question_subtype\": \"string\",\n      \"sequenceOpenTextMode\": \"overall\"\n    }\n  ],\n  \"number_participants\": \"<integer>\",\n  \"expected_version\": \"<integer>\",\n  \"generate_life_stories\": true,\n  \"launch\": true,\n  \"persona_context\": \"\",\n  \"research_goal\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2cb28cf2-f482-4115-afd1-b5d6004841eb",
+          "name": "Get study creation job status",
+          "request": {
+            "name": "Get study creation job status",
+            "description": {
+              "content": "Poll the status of a study creation job. Returns `processing` while the study is being generated, `completed` with the study ID when done, or `failed` if an error occurred.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "studies",
+                "jobs",
+                ":job_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "job_id",
+                  "description": "(Required) The job ID returned by the create study endpoint"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b0d2a0f3-08a9-45d9-8180-38f1ce85025d",
+              "name": "Job completed or failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "studies",
+                    "jobs",
+                    ":job_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) The job ID returned by the create study endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"preparing_context\",\n  \"analyze_done\": 2560,\n  \"analyze_item_elapsed_ms\": 8372,\n  \"analyze_item_expected_ms\": 5897,\n  \"analyze_total\": 4285,\n  \"analyze_video_seconds\": 6976,\n  \"error_message\": \"string\",\n  \"has_analyzing_media\": true,\n  \"has_enriched_context\": true,\n  \"has_life_stories\": true,\n  \"has_media\": false,\n  \"has_qualitative_questions\": true,\n  \"jury_panel_size\": 868,\n  \"media_done\": 4620,\n  \"media_item_elapsed_ms\": 1217,\n  \"media_item_expected_ms\": 8604,\n  \"media_total\": 4109,\n  \"number_participants\": 414,\n  \"phase\": \"string\",\n  \"phase_entered_at_ms\": 8386,\n  \"progress\": 7802.678016375412,\n  \"qual_questions_count\": 5617,\n  \"study_id\": \"string\",\n  \"title\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "704af65e-27e6-4135-9ebd-445e5e3dfed5",
+              "name": "Job still processing",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "studies",
+                    "jobs",
+                    ":job_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) The job ID returned by the create study endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"preparing_context\",\n  \"analyze_done\": 2560,\n  \"analyze_item_elapsed_ms\": 8372,\n  \"analyze_item_expected_ms\": 5897,\n  \"analyze_total\": 4285,\n  \"analyze_video_seconds\": 6976,\n  \"error_message\": \"string\",\n  \"has_analyzing_media\": true,\n  \"has_enriched_context\": true,\n  \"has_life_stories\": true,\n  \"has_media\": false,\n  \"has_qualitative_questions\": true,\n  \"jury_panel_size\": 868,\n  \"media_done\": 4620,\n  \"media_item_elapsed_ms\": 1217,\n  \"media_item_expected_ms\": 8604,\n  \"media_total\": 4109,\n  \"number_participants\": 414,\n  \"phase\": \"string\",\n  \"phase_entered_at_ms\": 8386,\n  \"progress\": 7802.678016375412,\n  \"qual_questions_count\": 5617,\n  \"study_id\": \"string\",\n  \"title\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1f7542f9-6722-4a9f-87ab-4503999bf6f3",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "studies",
+                    "jobs",
+                    ":job_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) The job ID returned by the create study endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1288d517-4e80-4c5f-853d-5a971c89ddcb",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "studies",
+                    "jobs",
+                    ":job_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) The job ID returned by the create study endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "66bb33bc-c044-48a4-8706-b495dba81953",
+              "name": "Job not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "studies",
+                    "jobs",
+                    ":job_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) The job ID returned by the create study endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b1d8c045-c097-45eb-ae0b-fa3236e07bd8",
+          "name": "Get study results",
+          "request": {
+            "name": "Get study results",
+            "description": {
+              "content": "Retrieve study configuration and all participant responses.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "studies",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The UUID of the study to retrieve"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "30275470-fc8f-4750-bd30-f10def0684cf",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "studies",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The UUID of the study to retrieve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"study_details\": {\n    \"title\": \"string\",\n    \"number_participants\": 6037,\n    \"age_parameters\": {\n      \"min_age\": 369,\n      \"max_age\": 483,\n      \"mean\": 2704.8624080982795,\n      \"st_dev\": 3037.7690785954183,\n      \"venue\": \"string\"\n    },\n    \"assigned_materials\": [\n      {\n        \"materials_name\": \"string\",\n        \"stimuli\": [\n          {\n            \"stimulus_name\": \"string\",\n            \"stimulus_type\": \"pdf\",\n            \"media\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"caption\": \"\",\n            \"materials_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"stimulus_name\": \"string\",\n            \"stimulus_type\": \"pdf\",\n            \"media\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"caption\": \"\",\n            \"materials_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      {\n        \"materials_name\": \"string\",\n        \"stimuli\": [\n          {\n            \"stimulus_name\": \"string\",\n            \"stimulus_type\": \"audio\",\n            \"media\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"caption\": \"\",\n            \"materials_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"stimulus_name\": \"string\",\n            \"stimulus_type\": \"image\",\n            \"media\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"caption\": \"\",\n            \"materials_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    ],\n    \"uploaded_images\": [\n      {\n        \"name\": \"string\",\n        \"url\": \"string\",\n        \"caption\": \"\",\n        \"is_sequential\": false\n      },\n      {\n        \"name\": \"string\",\n        \"url\": \"string\",\n        \"caption\": \"\",\n        \"is_sequential\": false\n      }\n    ],\n    \"added_captions\": [\n      {\n        \"name\": \"string\",\n        \"content\": \"string\",\n        \"caption\": \"\"\n      },\n      {\n        \"name\": \"string\",\n        \"content\": \"string\",\n        \"caption\": \"\"\n      }\n    ],\n    \"segments\": [\n      {\n        \"name\": \"string\",\n        \"subcategories\": [\n          {\n            \"name\": \"string\",\n            \"percentage\": 2029\n          },\n          {\n            \"name\": \"string\",\n            \"percentage\": 2250\n          }\n        ]\n      },\n      {\n        \"name\": \"string\",\n        \"subcategories\": [\n          {\n            \"name\": \"string\",\n            \"percentage\": 7692\n          },\n          {\n            \"name\": \"string\",\n            \"percentage\": 4917\n          }\n        ]\n      }\n    ],\n    \"question_groups\": [\n      {\n        \"name\": \"string\",\n        \"questions\": [\n          \"string\",\n          \"string\"\n        ],\n        \"scale\": \"qualitative\",\n        \"allowMultiple\": false,\n        \"choice_matrix_rows\": [\n          \"string\",\n          \"string\"\n        ],\n        \"choices\": [\n          \"string\",\n          \"string\"\n        ],\n        \"question_subtype\": \"string\",\n        \"sequenceOpenTextMode\": \"per_stimulus\"\n      },\n      {\n        \"name\": \"string\",\n        \"questions\": [\n          \"string\",\n          \"string\"\n        ],\n        \"scale\": \"qualitative\",\n        \"allowMultiple\": false,\n        \"choice_matrix_rows\": [\n          \"string\",\n          \"string\"\n        ],\n        \"choices\": [\n          \"string\",\n          \"string\"\n        ],\n        \"question_subtype\": \"string\",\n        \"sequenceOpenTextMode\": \"overall\"\n      }\n    ],\n    \"jury_panel_size\": 6682,\n    \"log_to_memory\": true,\n    \"num_participants_in_paper\": 6749,\n    \"persona_context\": \"\",\n    \"question_blocks\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": true,\n      \"key_3\": \"string\",\n      \"key_4\": 5110.299135522527\n    },\n    \"research_goal\": \"\",\n    \"stimuli_prompt_append\": \"\",\n    \"uploaded_audios\": [\n      {\n        \"name\": \"string\",\n        \"url\": \"string\",\n        \"caption\": \"\",\n        \"is_sequential\": false\n      },\n      {\n        \"name\": \"string\",\n        \"url\": \"string\",\n        \"caption\": \"\",\n        \"is_sequential\": false\n      }\n    ],\n    \"uploaded_pdfs\": [\n      {\n        \"name\": \"string\",\n        \"url\": \"string\",\n        \"caption\": \"\",\n        \"is_sequential\": false\n      },\n      {\n        \"name\": \"string\",\n        \"url\": \"string\",\n        \"caption\": \"\",\n        \"is_sequential\": false\n      }\n    ],\n    \"uploaded_videos\": [\n      {\n        \"name\": \"string\",\n        \"url\": \"string\",\n        \"caption\": \"\",\n        \"is_sequential\": false\n      },\n      {\n        \"name\": \"string\",\n        \"url\": \"string\",\n        \"caption\": \"\",\n        \"is_sequential\": false\n      }\n    ]\n  },\n  \"results\": [\n    {\n      \"id\": 8955,\n      \"public_response_id\": \"string\",\n      \"assigned_materials\": \"string\",\n      \"response_valid\": true,\n      \"segments\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"participant_assigned_materials\": [\n        {\n          \"materials_name\": \"string\",\n          \"stimuli\": [\n            {\n              \"stimulus_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"stimulus_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"media\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"caption\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"materials_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"stimulus_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"stimulus_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"media\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"caption\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"materials_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"materials_name\": \"string\",\n          \"stimuli\": [\n            {\n              \"stimulus_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"stimulus_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"media\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"caption\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"materials_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"stimulus_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"stimulus_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"media\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"caption\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"materials_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"participant_response\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"public_participant_id\": \"string\"\n    },\n    {\n      \"id\": 2074,\n      \"public_response_id\": \"string\",\n      \"assigned_materials\": \"string\",\n      \"response_valid\": true,\n      \"segments\": {\n        \"key_0\": \"string\"\n      },\n      \"participant_assigned_materials\": [\n        {\n          \"materials_name\": \"string\",\n          \"stimuli\": [\n            {\n              \"stimulus_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"stimulus_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"media\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"caption\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"materials_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"stimulus_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"stimulus_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"media\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"caption\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"materials_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"materials_name\": \"string\",\n          \"stimuli\": [\n            {\n              \"stimulus_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"stimulus_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"media\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"caption\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"materials_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"stimulus_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"stimulus_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"media\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"caption\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"materials_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"participant_response\": {\n        \"key_0\": \"string\"\n      },\n      \"public_participant_id\": \"string\"\n    }\n  ],\n  \"created_at\": \"1971-06-19T06:47:10.989Z\",\n  \"status\": \"string\",\n  \"user_id\": \"string\",\n  \"completed_at\": \"1947-07-17T23:58:52.582Z\",\n  \"folder_id\": 6765,\n  \"is_shared\": false,\n  \"version\": 0\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "43f2008c-7996-4972-b97c-5633cde2e599",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "studies",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The UUID of the study to retrieve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b640daf3-2187-43a5-9ff9-623880e3e09f",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "studies",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The UUID of the study to retrieve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c45e2c99-d9c0-41db-acad-030e1282479f",
+              "name": "Not authorized to view this study",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "studies",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The UUID of the study to retrieve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "52deec70-f624-466b-8818-9a5f0dccebec",
+              "name": "Study not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "studies",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The UUID of the study to retrieve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c1cb242f-df5f-4aa4-87f8-056c73bccb93",
+          "name": "Replace a draft study",
+          "request": {
+            "name": "Replace a draft study",
+            "description": {
+              "content": "Replace the full configuration of an existing draft study. The same `launch` flag accepted by POST /v1/studies controls whether this also enqueues the background job: launch=false keeps the study as a draft, launch=true flips it to running and starts execution. Returns 409 if the study has already been launched (status != 'draft'), or if `expected_version` is provided and another save has bumped the draft's version since it was read.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "studies",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"<string>\",\n  \"uploaded_images\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"uploaded_videos\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"uploaded_audios\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"uploaded_pdfs\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"added_captions\": [\n    {\n      \"name\": \"<string>\",\n      \"caption\": \"\",\n      \"content\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"<string>\",\n      \"caption\": \"\",\n      \"content\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"segments\": [\n    {\n      \"name\": \"<string>\",\n      \"subcategories\": [\n        {\n          \"name\": \"<string>\",\n          \"percentage\": \"<integer>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"percentage\": \"<integer>\"\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"subcategories\": [\n        {\n          \"name\": \"<string>\",\n          \"percentage\": \"<integer>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"percentage\": \"<integer>\"\n        }\n      ]\n    }\n  ],\n  \"age_parameters\": {\n    \"min_age\": \"<integer>\",\n    \"max_age\": \"<integer>\",\n    \"mean\": \"<number>\",\n    \"st_dev\": \"<number>\",\n    \"venue\": \"<string>\"\n  },\n  \"assigned_materials\": [\n    {\n      \"materials_name\": \"<string>\",\n      \"stimuli\": [\n        {\n          \"stimulus_name\": \"<string>\",\n          \"stimulus_type\": \"<string>\",\n          \"media\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"<string>\"\n        },\n        {\n          \"stimulus_name\": \"<string>\",\n          \"stimulus_type\": \"<string>\",\n          \"media\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"materials_name\": \"<string>\",\n      \"stimuli\": [\n        {\n          \"stimulus_name\": \"<string>\",\n          \"stimulus_type\": \"<string>\",\n          \"media\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"<string>\"\n        },\n        {\n          \"stimulus_name\": \"<string>\",\n          \"stimulus_type\": \"<string>\",\n          \"media\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"question_groups\": [\n    {\n      \"name\": \"<string>\",\n      \"questions\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"scale\": \"<string>\",\n      \"allowMultiple\": false,\n      \"choice_matrix_rows\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"choices\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"question_subtype\": \"<string>\",\n      \"sequenceOpenTextMode\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"questions\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"scale\": \"<string>\",\n      \"allowMultiple\": false,\n      \"choice_matrix_rows\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"choices\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"question_subtype\": \"<string>\",\n      \"sequenceOpenTextMode\": \"<string>\"\n    }\n  ],\n  \"number_participants\": \"<integer>\",\n  \"expected_version\": \"<integer>\",\n  \"generate_life_stories\": true,\n  \"launch\": true,\n  \"persona_context\": \"\",\n  \"research_goal\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c28ac6a5-5377-4401-ada8-ff898bba0b29",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "studies",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"uploaded_images\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"uploaded_videos\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"uploaded_audios\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"uploaded_pdfs\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"added_captions\": [\n    {\n      \"name\": \"string\",\n      \"caption\": \"\",\n      \"content\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"caption\": \"\",\n      \"content\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"segments\": [\n    {\n      \"name\": \"string\",\n      \"subcategories\": [\n        {\n          \"name\": \"string\",\n          \"percentage\": 3018\n        },\n        {\n          \"name\": \"string\",\n          \"percentage\": 7785\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"subcategories\": [\n        {\n          \"name\": \"string\",\n          \"percentage\": 3314\n        },\n        {\n          \"name\": \"string\",\n          \"percentage\": 6040\n        }\n      ]\n    }\n  ],\n  \"age_parameters\": {\n    \"min_age\": 3667,\n    \"max_age\": 8091,\n    \"mean\": 5799.875819909067,\n    \"st_dev\": 2036.9489931030994,\n    \"venue\": \"string\"\n  },\n  \"assigned_materials\": [\n    {\n      \"materials_name\": \"string\",\n      \"stimuli\": [\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"image\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        },\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"text\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        }\n      ]\n    },\n    {\n      \"materials_name\": \"string\",\n      \"stimuli\": [\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"pdf\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        },\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"video\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"question_groups\": [\n    {\n      \"name\": \"string\",\n      \"questions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"scale\": \"qualitative\",\n      \"allowMultiple\": false,\n      \"choice_matrix_rows\": [\n        \"string\",\n        \"string\"\n      ],\n      \"choices\": [\n        \"string\",\n        \"string\"\n      ],\n      \"question_subtype\": \"string\",\n      \"sequenceOpenTextMode\": \"overall\"\n    },\n    {\n      \"name\": \"string\",\n      \"questions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"scale\": \"qualitative\",\n      \"allowMultiple\": false,\n      \"choice_matrix_rows\": [\n        \"string\",\n        \"string\"\n      ],\n      \"choices\": [\n        \"string\",\n        \"string\"\n      ],\n      \"question_subtype\": \"string\",\n      \"sequenceOpenTextMode\": \"overall\"\n    }\n  ],\n  \"number_participants\": \"<integer>\",\n  \"expected_version\": \"<integer>\",\n  \"generate_life_stories\": true,\n  \"launch\": true,\n  \"persona_context\": \"\",\n  \"research_goal\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"study_id\": \"string\",\n  \"job_id\": \"string\",\n  \"version\": 3272\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "42132784-d240-4629-a69a-432634f68f26",
+              "name": "Validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "studies",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"uploaded_images\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"uploaded_videos\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"uploaded_audios\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"uploaded_pdfs\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"added_captions\": [\n    {\n      \"name\": \"string\",\n      \"caption\": \"\",\n      \"content\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"caption\": \"\",\n      \"content\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"segments\": [\n    {\n      \"name\": \"string\",\n      \"subcategories\": [\n        {\n          \"name\": \"string\",\n          \"percentage\": 3018\n        },\n        {\n          \"name\": \"string\",\n          \"percentage\": 7785\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"subcategories\": [\n        {\n          \"name\": \"string\",\n          \"percentage\": 3314\n        },\n        {\n          \"name\": \"string\",\n          \"percentage\": 6040\n        }\n      ]\n    }\n  ],\n  \"age_parameters\": {\n    \"min_age\": 3667,\n    \"max_age\": 8091,\n    \"mean\": 5799.875819909067,\n    \"st_dev\": 2036.9489931030994,\n    \"venue\": \"string\"\n  },\n  \"assigned_materials\": [\n    {\n      \"materials_name\": \"string\",\n      \"stimuli\": [\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"image\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        },\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"text\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        }\n      ]\n    },\n    {\n      \"materials_name\": \"string\",\n      \"stimuli\": [\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"pdf\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        },\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"video\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"question_groups\": [\n    {\n      \"name\": \"string\",\n      \"questions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"scale\": \"qualitative\",\n      \"allowMultiple\": false,\n      \"choice_matrix_rows\": [\n        \"string\",\n        \"string\"\n      ],\n      \"choices\": [\n        \"string\",\n        \"string\"\n      ],\n      \"question_subtype\": \"string\",\n      \"sequenceOpenTextMode\": \"overall\"\n    },\n    {\n      \"name\": \"string\",\n      \"questions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"scale\": \"qualitative\",\n      \"allowMultiple\": false,\n      \"choice_matrix_rows\": [\n        \"string\",\n        \"string\"\n      ],\n      \"choices\": [\n        \"string\",\n        \"string\"\n      ],\n      \"question_subtype\": \"string\",\n      \"sequenceOpenTextMode\": \"overall\"\n    }\n  ],\n  \"number_participants\": \"<integer>\",\n  \"expected_version\": \"<integer>\",\n  \"generate_life_stories\": true,\n  \"launch\": true,\n  \"persona_context\": \"\",\n  \"research_goal\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8b649792-2a1c-4629-8f03-fe50565b2210",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "studies",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"uploaded_images\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"uploaded_videos\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"uploaded_audios\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"uploaded_pdfs\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"added_captions\": [\n    {\n      \"name\": \"string\",\n      \"caption\": \"\",\n      \"content\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"caption\": \"\",\n      \"content\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"segments\": [\n    {\n      \"name\": \"string\",\n      \"subcategories\": [\n        {\n          \"name\": \"string\",\n          \"percentage\": 3018\n        },\n        {\n          \"name\": \"string\",\n          \"percentage\": 7785\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"subcategories\": [\n        {\n          \"name\": \"string\",\n          \"percentage\": 3314\n        },\n        {\n          \"name\": \"string\",\n          \"percentage\": 6040\n        }\n      ]\n    }\n  ],\n  \"age_parameters\": {\n    \"min_age\": 3667,\n    \"max_age\": 8091,\n    \"mean\": 5799.875819909067,\n    \"st_dev\": 2036.9489931030994,\n    \"venue\": \"string\"\n  },\n  \"assigned_materials\": [\n    {\n      \"materials_name\": \"string\",\n      \"stimuli\": [\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"image\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        },\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"text\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        }\n      ]\n    },\n    {\n      \"materials_name\": \"string\",\n      \"stimuli\": [\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"pdf\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        },\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"video\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"question_groups\": [\n    {\n      \"name\": \"string\",\n      \"questions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"scale\": \"qualitative\",\n      \"allowMultiple\": false,\n      \"choice_matrix_rows\": [\n        \"string\",\n        \"string\"\n      ],\n      \"choices\": [\n        \"string\",\n        \"string\"\n      ],\n      \"question_subtype\": \"string\",\n      \"sequenceOpenTextMode\": \"overall\"\n    },\n    {\n      \"name\": \"string\",\n      \"questions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"scale\": \"qualitative\",\n      \"allowMultiple\": false,\n      \"choice_matrix_rows\": [\n        \"string\",\n        \"string\"\n      ],\n      \"choices\": [\n        \"string\",\n        \"string\"\n      ],\n      \"question_subtype\": \"string\",\n      \"sequenceOpenTextMode\": \"overall\"\n    }\n  ],\n  \"number_participants\": \"<integer>\",\n  \"expected_version\": \"<integer>\",\n  \"generate_life_stories\": true,\n  \"launch\": true,\n  \"persona_context\": \"\",\n  \"research_goal\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ff1213dd-70fa-49db-b7e4-eb54ba5f3a45",
+              "name": "Entitlement limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "studies",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"uploaded_images\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"uploaded_videos\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"uploaded_audios\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"uploaded_pdfs\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"added_captions\": [\n    {\n      \"name\": \"string\",\n      \"caption\": \"\",\n      \"content\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"caption\": \"\",\n      \"content\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"segments\": [\n    {\n      \"name\": \"string\",\n      \"subcategories\": [\n        {\n          \"name\": \"string\",\n          \"percentage\": 3018\n        },\n        {\n          \"name\": \"string\",\n          \"percentage\": 7785\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"subcategories\": [\n        {\n          \"name\": \"string\",\n          \"percentage\": 3314\n        },\n        {\n          \"name\": \"string\",\n          \"percentage\": 6040\n        }\n      ]\n    }\n  ],\n  \"age_parameters\": {\n    \"min_age\": 3667,\n    \"max_age\": 8091,\n    \"mean\": 5799.875819909067,\n    \"st_dev\": 2036.9489931030994,\n    \"venue\": \"string\"\n  },\n  \"assigned_materials\": [\n    {\n      \"materials_name\": \"string\",\n      \"stimuli\": [\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"image\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        },\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"text\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        }\n      ]\n    },\n    {\n      \"materials_name\": \"string\",\n      \"stimuli\": [\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"pdf\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        },\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"video\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"question_groups\": [\n    {\n      \"name\": \"string\",\n      \"questions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"scale\": \"qualitative\",\n      \"allowMultiple\": false,\n      \"choice_matrix_rows\": [\n        \"string\",\n        \"string\"\n      ],\n      \"choices\": [\n        \"string\",\n        \"string\"\n      ],\n      \"question_subtype\": \"string\",\n      \"sequenceOpenTextMode\": \"overall\"\n    },\n    {\n      \"name\": \"string\",\n      \"questions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"scale\": \"qualitative\",\n      \"allowMultiple\": false,\n      \"choice_matrix_rows\": [\n        \"string\",\n        \"string\"\n      ],\n      \"choices\": [\n        \"string\",\n        \"string\"\n      ],\n      \"question_subtype\": \"string\",\n      \"sequenceOpenTextMode\": \"overall\"\n    }\n  ],\n  \"number_participants\": \"<integer>\",\n  \"expected_version\": \"<integer>\",\n  \"generate_life_stories\": true,\n  \"launch\": true,\n  \"persona_context\": \"\",\n  \"research_goal\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Payment Required",
+              "code": 402,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "88f02a3a-d126-4467-81d7-7e3da52e8889",
+              "name": "Not authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "studies",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"uploaded_images\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"uploaded_videos\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"uploaded_audios\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"uploaded_pdfs\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"added_captions\": [\n    {\n      \"name\": \"string\",\n      \"caption\": \"\",\n      \"content\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"caption\": \"\",\n      \"content\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"segments\": [\n    {\n      \"name\": \"string\",\n      \"subcategories\": [\n        {\n          \"name\": \"string\",\n          \"percentage\": 3018\n        },\n        {\n          \"name\": \"string\",\n          \"percentage\": 7785\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"subcategories\": [\n        {\n          \"name\": \"string\",\n          \"percentage\": 3314\n        },\n        {\n          \"name\": \"string\",\n          \"percentage\": 6040\n        }\n      ]\n    }\n  ],\n  \"age_parameters\": {\n    \"min_age\": 3667,\n    \"max_age\": 8091,\n    \"mean\": 5799.875819909067,\n    \"st_dev\": 2036.9489931030994,\n    \"venue\": \"string\"\n  },\n  \"assigned_materials\": [\n    {\n      \"materials_name\": \"string\",\n      \"stimuli\": [\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"image\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        },\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"text\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        }\n      ]\n    },\n    {\n      \"materials_name\": \"string\",\n      \"stimuli\": [\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"pdf\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        },\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"video\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"question_groups\": [\n    {\n      \"name\": \"string\",\n      \"questions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"scale\": \"qualitative\",\n      \"allowMultiple\": false,\n      \"choice_matrix_rows\": [\n        \"string\",\n        \"string\"\n      ],\n      \"choices\": [\n        \"string\",\n        \"string\"\n      ],\n      \"question_subtype\": \"string\",\n      \"sequenceOpenTextMode\": \"overall\"\n    },\n    {\n      \"name\": \"string\",\n      \"questions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"scale\": \"qualitative\",\n      \"allowMultiple\": false,\n      \"choice_matrix_rows\": [\n        \"string\",\n        \"string\"\n      ],\n      \"choices\": [\n        \"string\",\n        \"string\"\n      ],\n      \"question_subtype\": \"string\",\n      \"sequenceOpenTextMode\": \"overall\"\n    }\n  ],\n  \"number_participants\": \"<integer>\",\n  \"expected_version\": \"<integer>\",\n  \"generate_life_stories\": true,\n  \"launch\": true,\n  \"persona_context\": \"\",\n  \"research_goal\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "22929740-06a6-46f2-9581-c5b50e82d6a8",
+              "name": "Study not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "studies",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"uploaded_images\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"uploaded_videos\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"uploaded_audios\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"uploaded_pdfs\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"added_captions\": [\n    {\n      \"name\": \"string\",\n      \"caption\": \"\",\n      \"content\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"caption\": \"\",\n      \"content\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"segments\": [\n    {\n      \"name\": \"string\",\n      \"subcategories\": [\n        {\n          \"name\": \"string\",\n          \"percentage\": 3018\n        },\n        {\n          \"name\": \"string\",\n          \"percentage\": 7785\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"subcategories\": [\n        {\n          \"name\": \"string\",\n          \"percentage\": 3314\n        },\n        {\n          \"name\": \"string\",\n          \"percentage\": 6040\n        }\n      ]\n    }\n  ],\n  \"age_parameters\": {\n    \"min_age\": 3667,\n    \"max_age\": 8091,\n    \"mean\": 5799.875819909067,\n    \"st_dev\": 2036.9489931030994,\n    \"venue\": \"string\"\n  },\n  \"assigned_materials\": [\n    {\n      \"materials_name\": \"string\",\n      \"stimuli\": [\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"image\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        },\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"text\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        }\n      ]\n    },\n    {\n      \"materials_name\": \"string\",\n      \"stimuli\": [\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"pdf\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        },\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"video\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"question_groups\": [\n    {\n      \"name\": \"string\",\n      \"questions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"scale\": \"qualitative\",\n      \"allowMultiple\": false,\n      \"choice_matrix_rows\": [\n        \"string\",\n        \"string\"\n      ],\n      \"choices\": [\n        \"string\",\n        \"string\"\n      ],\n      \"question_subtype\": \"string\",\n      \"sequenceOpenTextMode\": \"overall\"\n    },\n    {\n      \"name\": \"string\",\n      \"questions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"scale\": \"qualitative\",\n      \"allowMultiple\": false,\n      \"choice_matrix_rows\": [\n        \"string\",\n        \"string\"\n      ],\n      \"choices\": [\n        \"string\",\n        \"string\"\n      ],\n      \"question_subtype\": \"string\",\n      \"sequenceOpenTextMode\": \"overall\"\n    }\n  ],\n  \"number_participants\": \"<integer>\",\n  \"expected_version\": \"<integer>\",\n  \"generate_life_stories\": true,\n  \"launch\": true,\n  \"persona_context\": \"\",\n  \"research_goal\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "72da302e-09de-4fe1-8a0d-31d6b4584c3c",
+              "name": "Study is not a draft",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "studies",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"uploaded_images\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"uploaded_videos\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"uploaded_audios\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"uploaded_pdfs\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"caption\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"added_captions\": [\n    {\n      \"name\": \"string\",\n      \"caption\": \"\",\n      \"content\": \"\",\n      \"is_sequential\": false\n    },\n    {\n      \"name\": \"string\",\n      \"caption\": \"\",\n      \"content\": \"\",\n      \"is_sequential\": false\n    }\n  ],\n  \"segments\": [\n    {\n      \"name\": \"string\",\n      \"subcategories\": [\n        {\n          \"name\": \"string\",\n          \"percentage\": 3018\n        },\n        {\n          \"name\": \"string\",\n          \"percentage\": 7785\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"subcategories\": [\n        {\n          \"name\": \"string\",\n          \"percentage\": 3314\n        },\n        {\n          \"name\": \"string\",\n          \"percentage\": 6040\n        }\n      ]\n    }\n  ],\n  \"age_parameters\": {\n    \"min_age\": 3667,\n    \"max_age\": 8091,\n    \"mean\": 5799.875819909067,\n    \"st_dev\": 2036.9489931030994,\n    \"venue\": \"string\"\n  },\n  \"assigned_materials\": [\n    {\n      \"materials_name\": \"string\",\n      \"stimuli\": [\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"image\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        },\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"text\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        }\n      ]\n    },\n    {\n      \"materials_name\": \"string\",\n      \"stimuli\": [\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"pdf\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        },\n        {\n          \"stimulus_name\": \"string\",\n          \"stimulus_type\": \"video\",\n          \"media\": [\n            \"string\",\n            \"string\"\n          ],\n          \"caption\": \"\",\n          \"materials_name\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"question_groups\": [\n    {\n      \"name\": \"string\",\n      \"questions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"scale\": \"qualitative\",\n      \"allowMultiple\": false,\n      \"choice_matrix_rows\": [\n        \"string\",\n        \"string\"\n      ],\n      \"choices\": [\n        \"string\",\n        \"string\"\n      ],\n      \"question_subtype\": \"string\",\n      \"sequenceOpenTextMode\": \"overall\"\n    },\n    {\n      \"name\": \"string\",\n      \"questions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"scale\": \"qualitative\",\n      \"allowMultiple\": false,\n      \"choice_matrix_rows\": [\n        \"string\",\n        \"string\"\n      ],\n      \"choices\": [\n        \"string\",\n        \"string\"\n      ],\n      \"question_subtype\": \"string\",\n      \"sequenceOpenTextMode\": \"overall\"\n    }\n  ],\n  \"number_participants\": \"<integer>\",\n  \"expected_version\": \"<integer>\",\n  \"generate_life_stories\": true,\n  \"launch\": true,\n  \"persona_context\": \"\",\n  \"research_goal\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4fac19f5-086b-4294-93fd-9d45f41abc41",
+    "name": "Viewpoints Study Studies API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Viewpoints Study API allows you to programmatically create and retrieve AI-powered research studies with simulated participants.\n\n## Authentication\n\n- **API Key** — pass your key in the `X-API-Key` header\nTo obtain an API key, visit your account settings in the Viewpoints dashboard.\n\n## Workflow\n\n1. **Upload stimuli** (optional, not needed for text only stimuli) — use the presigned URL endpoint to upload images, video, audio, or PDFs to S3\n2. **Create a study** — submit your study configuration with audience segments, assigned materials, and questions\n3. **Poll for completion** — use the job status endpoint to track progress and get completed study ID\n4. **Retrieve results** — once complete, fetch the full study results with all participant responses using the study ID",
+      "type": "text/plain"
+    }
+  }
+}

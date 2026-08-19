@@ -1,0 +1,101 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Viewpoints Study Studies API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Studies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a new study",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/studies",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Launch a new study with the given parameters. Upload file stimuli via the presigned URL endpoint first and include the resulting S3 keys as URLs. Returns a job ID for tracking study creation progress via the job status endpoint."
+        },
+        {
+          "info": {
+            "name": "Get study creation job status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/studies/jobs/:job_id",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "The job ID returned by the create study endpoint"
+              }
+            ]
+          },
+          "docs": "Poll the status of a study creation job. Returns `processing` while the study is being generated, `completed` with the study ID when done, or `failed` if an error occurred."
+        },
+        {
+          "info": {
+            "name": "Get study results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/studies/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the study to retrieve"
+              }
+            ]
+          },
+          "docs": "Retrieve study configuration and all participant responses."
+        },
+        {
+          "info": {
+            "name": "Replace a draft study",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v1/studies/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace the full configuration of an existing draft study. The same `launch` flag accepted by POST /v1/studies controls whether this also enqueues the background job: launch=false keeps the study as a draft, launch=true flips it to running and starts execution. Returns 409 if the study has already been launched (status != 'draft'), or if `expected_version` is provided and another save has bumped the draft's version since it was read."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

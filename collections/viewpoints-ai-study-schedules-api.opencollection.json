@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Viewpoints Study Studies Study Schedules API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Study Schedules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a study schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/study-schedules/:schedule_id",
+            "params": [
+              {
+                "name": "schedule_id",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the study schedule"
+              }
+            ]
+          },
+          "docs": "Retrieve the current configuration of a study schedule."
+        },
+        {
+          "info": {
+            "name": "Create or update a study schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v1/study-schedules/:study_id",
+            "params": [
+              {
+                "name": "study_id",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the study to schedule"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new schedule for the study if one doesn't exist, or updates the existing schedule. The study must belong to the authenticated user. When enabled, next_scheduled_run is set to now plus the repeat interval. When disabled, next_scheduled_run is cleared."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
