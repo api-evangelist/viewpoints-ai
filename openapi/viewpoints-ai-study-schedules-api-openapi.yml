@@ -1,27 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  description: 'The Viewpoints Study API allows you to programmatically create and retrieve AI-powered research studies with simulated participants.
-
-
-    ## Authentication
-
-
-    - **API Key** — pass your key in the `X-API-Key` header
-
-    To obtain an API key, visit your account settings in the Viewpoints dashboard.
-
-
-    ## Workflow
-
-
-    1. **Upload stimuli** (optional, not needed for text only stimuli) — use the presigned URL endpoint to upload images, video, audio, or PDFs to S3
-
-    2. **Create a study** — submit your study configuration with audience segments, assigned materials, and questions
-
-    3. **Poll for completion** — use the job status endpoint to track progress and get completed study ID
-
-    4. **Retrieve results** — once complete, fetch the full study results with all participant responses using the study ID'
-  title: Viewpoints Study Studies Study Schedules API
+  description: The Viewpoints Study API allows you to programmatically create and retrieve AI-powered research studies with simulated participants.
+  title: Viewpoints Study Study Schedules API
   version: 1.0.0
 security:
 - apiKey: []
@@ -128,73 +108,6 @@ paths:
       - Study Schedules
 components:
   schemas:
-    ValidationError:
-      description: Model of a validation error response.
-      items:
-        $ref: '#/components/schemas/ValidationErrorElement'
-      title: ValidationError
-      type: array
-    UpdateStudyScheduleRequest:
-      properties:
-        enabled:
-          title: Enabled
-          type: boolean
-        repeat_interval:
-          anyOf:
-          - enum:
-            - 7
-            - 14
-            - 30
-            type: integer
-          - type: 'null'
-          default: null
-          title: Repeat Interval
-      required:
-      - enabled
-      title: UpdateStudyScheduleRequest
-      type: object
-    ErrorResponse:
-      properties:
-        details:
-          anyOf:
-          - type: string
-          - type: 'null'
-          default: null
-          title: Details
-        error:
-          title: Error
-          type: string
-      required:
-      - error
-      title: ErrorResponse
-      type: object
-    ValidationErrorElement:
-      description: Model of a validation error response element.
-      properties:
-        ctx:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - type: 'null'
-          default: null
-          title: Error context
-        loc:
-          items:
-            type: string
-          title: Missing field name
-          type: array
-        msg:
-          title: Error message
-          type: string
-        type:
-          title: Error type
-          type: string
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationErrorElement
-      type: object
     StudyScheduleResponse:
       properties:
         enabled:
@@ -228,6 +141,73 @@ components:
       - source_study_id
       - enabled
       title: StudyScheduleResponse
+      type: object
+    ValidationError:
+      description: Model of a validation error response.
+      items:
+        $ref: '#/components/schemas/ValidationErrorElement'
+      title: ValidationError
+      type: array
+    ErrorResponse:
+      properties:
+        details:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: null
+          title: Details
+        error:
+          title: Error
+          type: string
+      required:
+      - error
+      title: ErrorResponse
+      type: object
+    UpdateStudyScheduleRequest:
+      properties:
+        enabled:
+          title: Enabled
+          type: boolean
+        repeat_interval:
+          anyOf:
+          - enum:
+            - 7
+            - 14
+            - 30
+            type: integer
+          - type: 'null'
+          default: null
+          title: Repeat Interval
+      required:
+      - enabled
+      title: UpdateStudyScheduleRequest
+      type: object
+    ValidationErrorElement:
+      description: Model of a validation error response element.
+      properties:
+        ctx:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          default: null
+          title: Error context
+        loc:
+          items:
+            type: string
+          title: Missing field name
+          type: array
+        msg:
+          title: Error message
+          type: string
+        type:
+          title: Error type
+          type: string
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationErrorElement
       type: object
   securitySchemes:
     apiKey:

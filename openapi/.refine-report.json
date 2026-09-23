@@ -1,9 +1,7 @@
 {
   "provider": "viewpoints-ai",
   "sources": [
-    "viewpoints-ai-studies-api-openapi.yml",
-    "viewpoints-ai-study-file-uploads-api-openapi.yml",
-    "viewpoints-ai-study-schedules-api-openapi.yml"
+    "_original/viewpoints-ai-study-openapi.json"
   ],
   "outputs": [
     "viewpoints-ai-studies-api-openapi.yml",
@@ -13,6 +11,14 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "viewpoints-ai-study-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "viewpoints-ai-studies-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "viewpoints-ai-study-file-uploads-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "viewpoints-ai-study-schedules-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

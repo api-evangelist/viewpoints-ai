@@ -1,26 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  description: 'The Viewpoints Study API allows you to programmatically create and retrieve AI-powered research studies with simulated participants.
-
-
-    ## Authentication
-
-
-    - **API Key** — pass your key in the `X-API-Key` header
-
-    To obtain an API key, visit your account settings in the Viewpoints dashboard.
-
-
-    ## Workflow
-
-
-    1. **Upload stimuli** (optional, not needed for text only stimuli) — use the presigned URL endpoint to upload images, video, audio, or PDFs to S3
-
-    2. **Create a study** — submit your study configuration with audience segments, assigned materials, and questions
-
-    3. **Poll for completion** — use the job status endpoint to track progress and get completed study ID
-
-    4. **Retrieve results** — once complete, fetch the full study results with all participant responses using the study ID'
+  description: The Viewpoints Study API allows you to programmatically create and retrieve AI-powered research studies with simulated participants.
   title: Viewpoints Study Studies API
   version: 1.0.0
 security:
@@ -229,6 +209,107 @@ paths:
       - Studies
 components:
   schemas:
+    TextCaptionItem:
+      description: Text stimulus to be included in the study
+      properties:
+        caption:
+          default: ''
+          title: Caption
+          type: string
+        content:
+          default: ''
+          title: Content
+          type: string
+        is_sequential:
+          default: false
+          title: Is Sequential
+          type: boolean
+        name:
+          title: Name
+          type: string
+      required:
+      - name
+      title: TextCaptionItem
+      type: object
+    ParticipantResultItem:
+      properties:
+        assigned_materials:
+          title: Assigned Materials
+          type: string
+        id:
+          title: Id
+          type: integer
+        participant_assigned_materials:
+          items:
+            $ref: '#/components/schemas/AssignedMaterialsItem'
+          title: Participant Assigned Materials
+          type: array
+        participant_response:
+          additionalProperties:
+            anyOf:
+            - type: string
+            - type: integer
+            - type: number
+            - items: {}
+              type: array
+            - additionalProperties: true
+              type: object
+            - type: 'null'
+          title: Participant Response
+          type: object
+        public_participant_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: null
+          title: Public Participant Id
+        public_response_id:
+          title: Public Response Id
+          type: string
+        response_valid:
+          title: Response Valid
+          type: boolean
+        segments:
+          additionalProperties:
+            anyOf:
+            - type: string
+            - type: integer
+            - type: number
+            - items: {}
+              type: array
+            - additionalProperties: true
+              type: object
+            - type: 'null'
+          title: Segments
+          type: object
+      required:
+      - id
+      - public_response_id
+      - assigned_materials
+      - response_valid
+      - segments
+      - participant_assigned_materials
+      - participant_response
+      title: ParticipantResultItem
+      type: object
+    MediaItem:
+      description: Media item that can be either a URL string or an object with url/type/name.
+      properties:
+        name:
+          default: ''
+          title: Name
+          type: string
+        type:
+          default: ''
+          title: Type
+          type: string
+        url:
+          title: Url
+          type: string
+      required:
+      - url
+      title: MediaItem
+      type: object
     QuestionItem:
       additionalProperties: false
       properties:
@@ -303,6 +384,36 @@ components:
       - questions
       - scale
       title: QuestionItem
+      type: object
+    SegmentSubCategoryItem:
+      properties:
+        name:
+          title: Name
+          type: string
+        percentage:
+          title: Percentage
+          type: integer
+      required:
+      - name
+      - percentage
+      title: SegmentSubCategoryItem
+      type: object
+    CaptionResponse:
+      properties:
+        caption:
+          default: ''
+          title: Caption
+          type: string
+        content:
+          title: Content
+          type: string
+        name:
+          title: Name
+          type: string
+      required:
+      - name
+      - content
+      title: CaptionResponse
       type: object
     CreateStudyRequest:
       examples:
@@ -429,27 +540,73 @@ components:
       - number_participants
       title: CreateStudyRequest
       type: object
-    UploadedMediaItem:
-      description: Media stimulus to be included in the study
+    StimulusItem:
       properties:
         caption:
           default: ''
           title: Caption
           type: string
-        is_sequential:
-          default: false
-          title: Is Sequential
-          type: boolean
+        materials_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: null
+          title: Materials Name
+        media:
+          description: Text stimulus, a URL string, or an object with url/type/name
+          items:
+            anyOf:
+            - type: string
+            - $ref: '#/components/schemas/MediaItem'
+          title: Media
+          type: array
+        stimulus_name:
+          title: Stimulus Name
+          type: string
+        stimulus_type:
+          enum:
+          - text
+          - image
+          - video
+          - audio
+          - pdf
+          title: Stimulus Type
+          type: string
+      required:
+      - stimulus_name
+      - stimulus_type
+      - media
+      title: StimulusItem
+      type: object
+    SegmentItem:
+      properties:
         name:
           title: Name
           type: string
-        url:
-          title: Url
-          type: string
+        subcategories:
+          items:
+            $ref: '#/components/schemas/SegmentSubCategoryItem'
+          title: Subcategories
+          type: array
       required:
       - name
-      - url
-      title: UploadedMediaItem
+      - subcategories
+      title: SegmentItem
+      type: object
+    ErrorResponse:
+      properties:
+        details:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: null
+          title: Details
+        error:
+          title: Error
+          type: string
+      required:
+      - error
+      title: ErrorResponse
       type: object
     StudyDetailsResponse:
       properties:
@@ -563,108 +720,6 @@ components:
       - question_groups
       title: StudyDetailsResponse
       type: object
-    StimulusItem:
-      properties:
-        caption:
-          default: ''
-          title: Caption
-          type: string
-        materials_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          default: null
-          title: Materials Name
-        media:
-          description: Text stimulus, a URL string, or an object with url/type/name
-          items:
-            anyOf:
-            - type: string
-            - $ref: '#/components/schemas/MediaItem'
-          title: Media
-          type: array
-        stimulus_name:
-          title: Stimulus Name
-          type: string
-        stimulus_type:
-          enum:
-          - text
-          - image
-          - video
-          - audio
-          - pdf
-          title: Stimulus Type
-          type: string
-      required:
-      - stimulus_name
-      - stimulus_type
-      - media
-      title: StimulusItem
-      type: object
-    CaptionResponse:
-      properties:
-        caption:
-          default: ''
-          title: Caption
-          type: string
-        content:
-          title: Content
-          type: string
-        name:
-          title: Name
-          type: string
-      required:
-      - name
-      - content
-      title: CaptionResponse
-      type: object
-    AgeParametersItem:
-      properties:
-        max_age:
-          title: Max Age
-          type: integer
-        mean:
-          anyOf:
-          - type: number
-          - type: 'null'
-          default: null
-          title: Mean
-        min_age:
-          title: Min Age
-          type: integer
-        st_dev:
-          anyOf:
-          - type: number
-          - type: 'null'
-          default: null
-          title: St Dev
-        venue:
-          anyOf:
-          - maxLength: 200
-            type: string
-          - type: 'null'
-          default: null
-          title: Venue
-      required:
-      - min_age
-      - max_age
-      title: AgeParametersItem
-      type: object
-    SegmentItem:
-      properties:
-        name:
-          title: Name
-          type: string
-        subcategories:
-          items:
-            $ref: '#/components/schemas/SegmentSubCategoryItem'
-          title: Subcategories
-          type: array
-      required:
-      - name
-      - subcategories
-      title: SegmentItem
-      type: object
     CreateStudyResponse:
       properties:
         job_id:
@@ -685,183 +740,6 @@ components:
       required:
       - study_id
       title: CreateStudyResponse
-      type: object
-    ParticipantResultItem:
-      properties:
-        assigned_materials:
-          title: Assigned Materials
-          type: string
-        id:
-          title: Id
-          type: integer
-        participant_assigned_materials:
-          items:
-            $ref: '#/components/schemas/AssignedMaterialsItem'
-          title: Participant Assigned Materials
-          type: array
-        participant_response:
-          additionalProperties:
-            anyOf:
-            - type: string
-            - type: integer
-            - type: number
-            - items: {}
-              type: array
-            - additionalProperties: true
-              type: object
-            - type: 'null'
-          title: Participant Response
-          type: object
-        public_participant_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          default: null
-          title: Public Participant Id
-        public_response_id:
-          title: Public Response Id
-          type: string
-        response_valid:
-          title: Response Valid
-          type: boolean
-        segments:
-          additionalProperties:
-            anyOf:
-            - type: string
-            - type: integer
-            - type: number
-            - items: {}
-              type: array
-            - additionalProperties: true
-              type: object
-            - type: 'null'
-          title: Segments
-          type: object
-      required:
-      - id
-      - public_response_id
-      - assigned_materials
-      - response_valid
-      - segments
-      - participant_assigned_materials
-      - participant_response
-      title: ParticipantResultItem
-      type: object
-    ErrorResponse:
-      properties:
-        details:
-          anyOf:
-          - type: string
-          - type: 'null'
-          default: null
-          title: Details
-        error:
-          title: Error
-          type: string
-      required:
-      - error
-      title: ErrorResponse
-      type: object
-    SegmentSubCategoryItem:
-      properties:
-        name:
-          title: Name
-          type: string
-        percentage:
-          title: Percentage
-          type: integer
-      required:
-      - name
-      - percentage
-      title: SegmentSubCategoryItem
-      type: object
-    MediaItem:
-      description: Media item that can be either a URL string or an object with url/type/name.
-      properties:
-        name:
-          default: ''
-          title: Name
-          type: string
-        type:
-          default: ''
-          title: Type
-          type: string
-        url:
-          title: Url
-          type: string
-      required:
-      - url
-      title: MediaItem
-      type: object
-    TextCaptionItem:
-      description: Text stimulus to be included in the study
-      properties:
-        caption:
-          default: ''
-          title: Caption
-          type: string
-        content:
-          default: ''
-          title: Content
-          type: string
-        is_sequential:
-          default: false
-          title: Is Sequential
-          type: boolean
-        name:
-          title: Name
-          type: string
-      required:
-      - name
-      title: TextCaptionItem
-      type: object
-    GetStudyResponse:
-      properties:
-        completed_at:
-          anyOf:
-          - format: date-time
-            type: string
-          - type: 'null'
-          default: null
-          title: Completed At
-        created_at:
-          format: date-time
-          title: Created At
-          type: string
-        folder_id:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          default: null
-          title: Folder Id
-        is_shared:
-          default: false
-          title: Is Shared
-          type: boolean
-        results:
-          items:
-            $ref: '#/components/schemas/ParticipantResultItem'
-          title: Results
-          type: array
-        status:
-          title: Status
-          type: string
-        study_details:
-          $ref: '#/components/schemas/StudyDetailsResponse'
-        user_id:
-          title: User Id
-          type: string
-        version:
-          default: 0
-          title: Version
-          type: integer
-      required:
-      - study_details
-      - results
-      - created_at
-      - status
-      - user_id
-      title: GetStudyResponse
       type: object
     AssignedMaterialsItem:
       properties:
@@ -1029,6 +907,108 @@ components:
       required:
       - status
       title: JobStatusResponse
+      type: object
+    AgeParametersItem:
+      properties:
+        max_age:
+          title: Max Age
+          type: integer
+        mean:
+          anyOf:
+          - type: number
+          - type: 'null'
+          default: null
+          title: Mean
+        min_age:
+          title: Min Age
+          type: integer
+        st_dev:
+          anyOf:
+          - type: number
+          - type: 'null'
+          default: null
+          title: St Dev
+        venue:
+          anyOf:
+          - maxLength: 200
+            type: string
+          - type: 'null'
+          default: null
+          title: Venue
+      required:
+      - min_age
+      - max_age
+      title: AgeParametersItem
+      type: object
+    UploadedMediaItem:
+      description: Media stimulus to be included in the study
+      properties:
+        caption:
+          default: ''
+          title: Caption
+          type: string
+        is_sequential:
+          default: false
+          title: Is Sequential
+          type: boolean
+        name:
+          title: Name
+          type: string
+        url:
+          title: Url
+          type: string
+      required:
+      - name
+      - url
+      title: UploadedMediaItem
+      type: object
+    GetStudyResponse:
+      properties:
+        completed_at:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          default: null
+          title: Completed At
+        created_at:
+          format: date-time
+          title: Created At
+          type: string
+        folder_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          default: null
+          title: Folder Id
+        is_shared:
+          default: false
+          title: Is Shared
+          type: boolean
+        results:
+          items:
+            $ref: '#/components/schemas/ParticipantResultItem'
+          title: Results
+          type: array
+        status:
+          title: Status
+          type: string
+        study_details:
+          $ref: '#/components/schemas/StudyDetailsResponse'
+        user_id:
+          title: User Id
+          type: string
+        version:
+          default: 0
+          title: Version
+          type: integer
+      required:
+      - study_details
+      - results
+      - created_at
+      - status
+      - user_id
+      title: GetStudyResponse
       type: object
   securitySchemes:
     apiKey:
