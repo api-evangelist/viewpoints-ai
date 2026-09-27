@@ -108,6 +108,67 @@ paths:
       - Study Schedules
 components:
   schemas:
+    UpdateStudyScheduleRequest:
+      properties:
+        enabled:
+          title: Enabled
+          type: boolean
+        repeat_interval:
+          anyOf:
+          - enum:
+            - 7
+            - 14
+            - 30
+            type: integer
+          - type: 'null'
+          default: null
+          title: Repeat Interval
+      required:
+      - enabled
+      title: UpdateStudyScheduleRequest
+      type: object
+    ErrorResponse:
+      properties:
+        details:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: null
+          title: Details
+        error:
+          title: Error
+          type: string
+      required:
+      - error
+      title: ErrorResponse
+      type: object
+    ValidationErrorElement:
+      description: Model of a validation error response element.
+      properties:
+        ctx:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          default: null
+          title: Error context
+        loc:
+          items:
+            type: string
+          title: Missing field name
+          type: array
+        msg:
+          title: Error message
+          type: string
+        type:
+          title: Error type
+          type: string
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationErrorElement
+      type: object
     StudyScheduleResponse:
       properties:
         enabled:
@@ -148,67 +209,6 @@ components:
         $ref: '#/components/schemas/ValidationErrorElement'
       title: ValidationError
       type: array
-    ErrorResponse:
-      properties:
-        details:
-          anyOf:
-          - type: string
-          - type: 'null'
-          default: null
-          title: Details
-        error:
-          title: Error
-          type: string
-      required:
-      - error
-      title: ErrorResponse
-      type: object
-    UpdateStudyScheduleRequest:
-      properties:
-        enabled:
-          title: Enabled
-          type: boolean
-        repeat_interval:
-          anyOf:
-          - enum:
-            - 7
-            - 14
-            - 30
-            type: integer
-          - type: 'null'
-          default: null
-          title: Repeat Interval
-      required:
-      - enabled
-      title: UpdateStudyScheduleRequest
-      type: object
-    ValidationErrorElement:
-      description: Model of a validation error response element.
-      properties:
-        ctx:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - type: 'null'
-          default: null
-          title: Error context
-        loc:
-          items:
-            type: string
-          title: Missing field name
-          type: array
-        msg:
-          title: Error message
-          type: string
-        type:
-          title: Error type
-          type: string
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationErrorElement
-      type: object
   securitySchemes:
     apiKey:
       in: header

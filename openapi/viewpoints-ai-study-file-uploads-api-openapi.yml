@@ -72,37 +72,6 @@ components:
       - error
       title: ErrorResponse
       type: object
-    PresignedPostData:
-      properties:
-        fields:
-          additionalProperties:
-            type: string
-          title: Fields
-          type: object
-        url:
-          title: Url
-          type: string
-      required:
-      - url
-      - fields
-      title: PresignedPostData
-      type: object
-    PresignedUrlResponse:
-      properties:
-        key:
-          title: Key
-          type: string
-        max_file_size:
-          title: Max File Size
-          type: integer
-        presigned_post_data:
-          $ref: '#/components/schemas/PresignedPostData'
-      required:
-      - presigned_post_data
-      - max_file_size
-      - key
-      title: PresignedUrlResponse
-      type: object
     PresignedUrlRequest:
       examples:
       - file_type: image/png
@@ -121,6 +90,37 @@ components:
       - filename
       - file_type
       title: PresignedUrlRequest
+      type: object
+    PresignedUrlResponse:
+      properties:
+        key:
+          title: Key
+          type: string
+        max_file_size:
+          title: Max File Size
+          type: integer
+        presigned_post_data:
+          $ref: '#/components/schemas/PresignedPostData'
+      required:
+      - presigned_post_data
+      - max_file_size
+      - key
+      title: PresignedUrlResponse
+      type: object
+    PresignedPostData:
+      properties:
+        fields:
+          additionalProperties:
+            type: string
+          title: Fields
+          type: object
+        url:
+          title: Url
+          type: string
+      required:
+      - url
+      - fields
+      title: PresignedPostData
       type: object
   securitySchemes:
     apiKey:
