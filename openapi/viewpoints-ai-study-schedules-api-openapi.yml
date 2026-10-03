@@ -127,48 +127,6 @@ components:
       - enabled
       title: UpdateStudyScheduleRequest
       type: object
-    ErrorResponse:
-      properties:
-        details:
-          anyOf:
-          - type: string
-          - type: 'null'
-          default: null
-          title: Details
-        error:
-          title: Error
-          type: string
-      required:
-      - error
-      title: ErrorResponse
-      type: object
-    ValidationErrorElement:
-      description: Model of a validation error response element.
-      properties:
-        ctx:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - type: 'null'
-          default: null
-          title: Error context
-        loc:
-          items:
-            type: string
-          title: Missing field name
-          type: array
-        msg:
-          title: Error message
-          type: string
-        type:
-          title: Error type
-          type: string
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationErrorElement
-      type: object
     StudyScheduleResponse:
       properties:
         enabled:
@@ -202,6 +160,48 @@ components:
       - source_study_id
       - enabled
       title: StudyScheduleResponse
+      type: object
+    ValidationErrorElement:
+      description: Model of a validation error response element.
+      properties:
+        ctx:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          default: null
+          title: Error context
+        loc:
+          items:
+            type: string
+          title: Missing field name
+          type: array
+        msg:
+          title: Error message
+          type: string
+        type:
+          title: Error type
+          type: string
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationErrorElement
+      type: object
+    ErrorResponse:
+      properties:
+        details:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: null
+          title: Details
+        error:
+          title: Error
+          type: string
+      required:
+      - error
+      title: ErrorResponse
       type: object
     ValidationError:
       description: Model of a validation error response.
