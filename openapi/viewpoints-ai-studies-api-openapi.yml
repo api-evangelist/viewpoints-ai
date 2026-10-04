@@ -209,136 +209,43 @@ paths:
       - Studies
 components:
   schemas:
-    TextCaptionItem:
-      description: Text stimulus to be included in the study
+    StimulusItem:
       properties:
         caption:
           default: ''
           title: Caption
           type: string
-        content:
-          default: ''
-          title: Content
-          type: string
-        is_sequential:
-          default: false
-          title: Is Sequential
-          type: boolean
-        name:
-          title: Name
-          type: string
-      required:
-      - name
-      title: TextCaptionItem
-      type: object
-    ParticipantResultItem:
-      properties:
-        assigned_materials:
-          title: Assigned Materials
-          type: string
-        id:
-          title: Id
-          type: integer
-        participant_assigned_materials:
-          items:
-            $ref: '#/components/schemas/AssignedMaterialsItem'
-          title: Participant Assigned Materials
-          type: array
-        participant_response:
-          additionalProperties:
-            anyOf:
-            - type: string
-            - type: integer
-            - type: number
-            - items: {}
-              type: array
-            - additionalProperties: true
-              type: object
-            - type: 'null'
-          title: Participant Response
-          type: object
-        public_participant_id:
+        materials_name:
           anyOf:
           - type: string
           - type: 'null'
           default: null
-          title: Public Participant Id
-        public_response_id:
-          title: Public Response Id
-          type: string
-        response_valid:
-          title: Response Valid
-          type: boolean
-        segments:
-          additionalProperties:
+          title: Materials Name
+        media:
+          description: Text stimulus, a URL string, or an object with url/type/name
+          items:
             anyOf:
             - type: string
-            - type: integer
-            - type: number
-            - items: {}
-              type: array
-            - additionalProperties: true
-              type: object
-            - type: 'null'
-          title: Segments
-          type: object
-      required:
-      - id
-      - public_response_id
-      - assigned_materials
-      - response_valid
-      - segments
-      - participant_assigned_materials
-      - participant_response
-      title: ParticipantResultItem
-      type: object
-    GetStudyResponse:
-      properties:
-        completed_at:
-          anyOf:
-          - format: date-time
-            type: string
-          - type: 'null'
-          default: null
-          title: Completed At
-        created_at:
-          format: date-time
-          title: Created At
-          type: string
-        folder_id:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          default: null
-          title: Folder Id
-        is_shared:
-          default: false
-          title: Is Shared
-          type: boolean
-        results:
-          items:
-            $ref: '#/components/schemas/ParticipantResultItem'
-          title: Results
+            - $ref: '#/components/schemas/MediaItem'
+          title: Media
           type: array
-        status:
-          title: Status
+        stimulus_name:
+          title: Stimulus Name
           type: string
-        study_details:
-          $ref: '#/components/schemas/StudyDetailsResponse'
-        user_id:
-          title: User Id
+        stimulus_type:
+          enum:
+          - text
+          - image
+          - video
+          - audio
+          - pdf
+          title: Stimulus Type
           type: string
-        version:
-          default: 0
-          title: Version
-          type: integer
       required:
-      - study_details
-      - results
-      - created_at
-      - status
-      - user_id
-      title: GetStudyResponse
+      - stimulus_name
+      - stimulus_type
+      - media
+      title: StimulusItem
       type: object
     CreateStudyResponse:
       properties:
@@ -473,6 +380,67 @@ components:
       - question_groups
       title: StudyDetailsResponse
       type: object
+    ParticipantResultItem:
+      properties:
+        assigned_materials:
+          title: Assigned Materials
+          type: string
+        id:
+          title: Id
+          type: integer
+        participant_assigned_materials:
+          items:
+            $ref: '#/components/schemas/AssignedMaterialsItem'
+          title: Participant Assigned Materials
+          type: array
+        participant_response:
+          additionalProperties:
+            anyOf:
+            - type: string
+            - type: integer
+            - type: number
+            - items: {}
+              type: array
+            - additionalProperties: true
+              type: object
+            - type: 'null'
+          title: Participant Response
+          type: object
+        public_participant_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: null
+          title: Public Participant Id
+        public_response_id:
+          title: Public Response Id
+          type: string
+        response_valid:
+          title: Response Valid
+          type: boolean
+        segments:
+          additionalProperties:
+            anyOf:
+            - type: string
+            - type: integer
+            - type: number
+            - items: {}
+              type: array
+            - additionalProperties: true
+              type: object
+            - type: 'null'
+          title: Segments
+          type: object
+      required:
+      - id
+      - public_response_id
+      - assigned_materials
+      - response_valid
+      - segments
+      - participant_assigned_materials
+      - participant_response
+      title: ParticipantResultItem
+      type: object
     AssignedMaterialsItem:
       properties:
         materials_name:
@@ -488,27 +456,68 @@ components:
       - stimuli
       title: AssignedMaterialsItem
       type: object
-    UploadedMediaItem:
-      description: Media stimulus to be included in the study
+    ErrorResponse:
       properties:
-        caption:
-          default: ''
-          title: Caption
-          type: string
-        is_sequential:
-          default: false
-          title: Is Sequential
-          type: boolean
-        name:
-          title: Name
-          type: string
-        url:
-          title: Url
+        details:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: null
+          title: Details
+        error:
+          title: Error
           type: string
       required:
-      - name
-      - url
-      title: UploadedMediaItem
+      - error
+      title: ErrorResponse
+      type: object
+    GetStudyResponse:
+      properties:
+        completed_at:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          default: null
+          title: Completed At
+        created_at:
+          format: date-time
+          title: Created At
+          type: string
+        folder_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          default: null
+          title: Folder Id
+        is_shared:
+          default: false
+          title: Is Shared
+          type: boolean
+        results:
+          items:
+            $ref: '#/components/schemas/ParticipantResultItem'
+          title: Results
+          type: array
+        status:
+          title: Status
+          type: string
+        study_details:
+          $ref: '#/components/schemas/StudyDetailsResponse'
+        user_id:
+          title: User Id
+          type: string
+        version:
+          default: 0
+          title: Version
+          type: integer
+      required:
+      - study_details
+      - results
+      - created_at
+      - status
+      - user_id
+      title: GetStudyResponse
       type: object
     SegmentItem:
       properties:
@@ -524,150 +533,6 @@ components:
       - name
       - subcategories
       title: SegmentItem
-      type: object
-    QuestionItem:
-      additionalProperties: false
-      properties:
-        allowMultiple:
-          default: false
-          description: Only applies when scale is 'multiple_choice'. When false (default), each persona selects exactly one option and the response is a single string. When true, each persona may select one or more options and the response is a JSON array of strings.
-          title: Allowmultiple
-          type: boolean
-        choice_matrix_rows:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          default: null
-          description: Row labels for question_subtype 'choice_matrix'. Each row receives exactly one choice.
-          title: Choice Matrix Rows
-        choices:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          default: null
-          description: Required when scale is 'multiple_choice' or 'allocation' (party names, minimum 2 required). The list of answer options.
-          title: Choices
-        name:
-          title: Name
-          type: string
-        question_subtype:
-          anyOf:
-          - type: string
-          - type: 'null'
-          default: null
-          description: Optional subtype for question variants. Use 'choice_matrix' with scale 'multiple_choice' to ask one single-select choice per row.
-          title: Question Subtype
-        questions:
-          items:
-            type: string
-          title: Questions
-          type: array
-        scale:
-          description: 'The response scale type. Either a point scale (2 - 100 points) in the format: ''<N> point scale (1 = <low label>; <N> = <high label>)'', or amount scale in the format: ''amount scale (<$ or £ or ¥><min amount> - <$ or £ or ¥><max amount>)'', or one of the keywords: ''qualitative'', ''multiple_choice'', ''allocation''.'
-          examples:
-          - qualitative
-          - multiple_choice
-          - 2 point scale (1 = No; 2 = Yes)
-          - 3 point scale (1 = 1 star; 3 = 3 stars)
-          - 5 point scale (1 = 1 star; 5 = 5 stars)
-          - 7 point scale (1 = Not at all appealing; 7 = Extremely appealing)
-          - 9 point scale (1 = Not at all likely; 9 = Extremely likely)
-          - 100 point scale (1 = Not at all likely; 100 = Extremely likely)
-          - amount scale ($5 - $100)
-          - amount scale (£20 - £200)
-          - amount scale ($)
-          - allocation
-          pattern: ^(?:qualitative|ranking|points_allocation|allocation|matrix|multiple_choice|(?:100|[1-9]\d|[2-9]) point scale \(1 = [^\r\n;]+; (?:100|[1-9]\d|[2-9]) = [^\r\n)]+\)|amount scale \(\$-?\d+(?:\.\d+)? - \$-?\d+(?:\.\d+)?\)|amount scale \(£-?\d+(?:\.\d+)? - £-?\d+(?:\.\d+)?\)|amount scale \(¥-?\d+(?:\.\d+)? - ¥-?\d+(?:\.\d+)?\)|amount scale \(\$\)|amount scale \(£\)|amount scale \(€\)|amount scale \(¥\))$
-          title: Scale
-          type: string
-        sequenceOpenTextMode:
-          anyOf:
-          - enum:
-            - per_stimulus
-            - overall
-            type: string
-          - type: 'null'
-          default: null
-          description: Only applies to qualitative questions in sequence studies. 'per_stimulus' asks once for each sequence item; 'overall' asks one overall open-ended question.
-          title: Sequenceopentextmode
-      required:
-      - name
-      - questions
-      - scale
-      title: QuestionItem
-      type: object
-    StimulusItem:
-      properties:
-        caption:
-          default: ''
-          title: Caption
-          type: string
-        materials_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          default: null
-          title: Materials Name
-        media:
-          description: Text stimulus, a URL string, or an object with url/type/name
-          items:
-            anyOf:
-            - type: string
-            - $ref: '#/components/schemas/MediaItem'
-          title: Media
-          type: array
-        stimulus_name:
-          title: Stimulus Name
-          type: string
-        stimulus_type:
-          enum:
-          - text
-          - image
-          - video
-          - audio
-          - pdf
-          title: Stimulus Type
-          type: string
-      required:
-      - stimulus_name
-      - stimulus_type
-      - media
-      title: StimulusItem
-      type: object
-    SegmentSubCategoryItem:
-      properties:
-        name:
-          title: Name
-          type: string
-        percentage:
-          title: Percentage
-          type: integer
-      required:
-      - name
-      - percentage
-      title: SegmentSubCategoryItem
-      type: object
-    MediaItem:
-      description: Media item that can be either a URL string or an object with url/type/name.
-      properties:
-        name:
-          default: ''
-          title: Name
-          type: string
-        type:
-          default: ''
-          title: Type
-          type: string
-        url:
-          title: Url
-          type: string
-      required:
-      - url
-      title: MediaItem
       type: object
     JobStatusResponse:
       properties:
@@ -946,38 +811,6 @@ components:
       - number_participants
       title: CreateStudyRequest
       type: object
-    ErrorResponse:
-      properties:
-        details:
-          anyOf:
-          - type: string
-          - type: 'null'
-          default: null
-          title: Details
-        error:
-          title: Error
-          type: string
-      required:
-      - error
-      title: ErrorResponse
-      type: object
-    CaptionResponse:
-      properties:
-        caption:
-          default: ''
-          title: Caption
-          type: string
-        content:
-          title: Content
-          type: string
-        name:
-          title: Name
-          type: string
-      required:
-      - name
-      - content
-      title: CaptionResponse
-      type: object
     AgeParametersItem:
       properties:
         max_age:
@@ -1009,6 +842,173 @@ components:
       - min_age
       - max_age
       title: AgeParametersItem
+      type: object
+    TextCaptionItem:
+      description: Text stimulus to be included in the study
+      properties:
+        caption:
+          default: ''
+          title: Caption
+          type: string
+        content:
+          default: ''
+          title: Content
+          type: string
+        is_sequential:
+          default: false
+          title: Is Sequential
+          type: boolean
+        name:
+          title: Name
+          type: string
+      required:
+      - name
+      title: TextCaptionItem
+      type: object
+    CaptionResponse:
+      properties:
+        caption:
+          default: ''
+          title: Caption
+          type: string
+        content:
+          title: Content
+          type: string
+        name:
+          title: Name
+          type: string
+      required:
+      - name
+      - content
+      title: CaptionResponse
+      type: object
+    UploadedMediaItem:
+      description: Media stimulus to be included in the study
+      properties:
+        caption:
+          default: ''
+          title: Caption
+          type: string
+        is_sequential:
+          default: false
+          title: Is Sequential
+          type: boolean
+        name:
+          title: Name
+          type: string
+        url:
+          title: Url
+          type: string
+      required:
+      - name
+      - url
+      title: UploadedMediaItem
+      type: object
+    QuestionItem:
+      additionalProperties: false
+      properties:
+        allowMultiple:
+          default: false
+          description: Only applies when scale is 'multiple_choice'. When false (default), each persona selects exactly one option and the response is a single string. When true, each persona may select one or more options and the response is a JSON array of strings.
+          title: Allowmultiple
+          type: boolean
+        choice_matrix_rows:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          default: null
+          description: Row labels for question_subtype 'choice_matrix'. Each row receives exactly one choice.
+          title: Choice Matrix Rows
+        choices:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          default: null
+          description: Required when scale is 'multiple_choice' or 'allocation' (party names, minimum 2 required). The list of answer options.
+          title: Choices
+        name:
+          title: Name
+          type: string
+        question_subtype:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: null
+          description: Optional subtype for question variants. Use 'choice_matrix' with scale 'multiple_choice' to ask one single-select choice per row.
+          title: Question Subtype
+        questions:
+          items:
+            type: string
+          title: Questions
+          type: array
+        scale:
+          description: 'The response scale type. Either a point scale (2 - 100 points) in the format: ''<N> point scale (1 = <low label>; <N> = <high label>)'', or amount scale in the format: ''amount scale (<$ or £ or ¥><min amount> - <$ or £ or ¥><max amount>)'', or one of the keywords: ''qualitative'', ''multiple_choice'', ''allocation''.'
+          examples:
+          - qualitative
+          - multiple_choice
+          - 2 point scale (1 = No; 2 = Yes)
+          - 3 point scale (1 = 1 star; 3 = 3 stars)
+          - 5 point scale (1 = 1 star; 5 = 5 stars)
+          - 7 point scale (1 = Not at all appealing; 7 = Extremely appealing)
+          - 9 point scale (1 = Not at all likely; 9 = Extremely likely)
+          - 100 point scale (1 = Not at all likely; 100 = Extremely likely)
+          - amount scale ($5 - $100)
+          - amount scale (£20 - £200)
+          - amount scale ($)
+          - allocation
+          pattern: ^(?:qualitative|ranking|points_allocation|allocation|matrix|multiple_choice|(?:100|[1-9]\d|[2-9]) point scale \(1 = [^\r\n;]+; (?:100|[1-9]\d|[2-9]) = [^\r\n)]+\)|amount scale \(\$-?\d+(?:\.\d+)? - \$-?\d+(?:\.\d+)?\)|amount scale \(£-?\d+(?:\.\d+)? - £-?\d+(?:\.\d+)?\)|amount scale \(¥-?\d+(?:\.\d+)? - ¥-?\d+(?:\.\d+)?\)|amount scale \(\$\)|amount scale \(£\)|amount scale \(€\)|amount scale \(¥\))$
+          title: Scale
+          type: string
+        sequenceOpenTextMode:
+          anyOf:
+          - enum:
+            - per_stimulus
+            - overall
+            type: string
+          - type: 'null'
+          default: null
+          description: Only applies to qualitative questions in sequence studies. 'per_stimulus' asks once for each sequence item; 'overall' asks one overall open-ended question.
+          title: Sequenceopentextmode
+      required:
+      - name
+      - questions
+      - scale
+      title: QuestionItem
+      type: object
+    SegmentSubCategoryItem:
+      properties:
+        name:
+          title: Name
+          type: string
+        percentage:
+          title: Percentage
+          type: integer
+      required:
+      - name
+      - percentage
+      title: SegmentSubCategoryItem
+      type: object
+    MediaItem:
+      description: Media item that can be either a URL string or an object with url/type/name.
+      properties:
+        name:
+          default: ''
+          title: Name
+          type: string
+        type:
+          default: ''
+          title: Type
+          type: string
+        url:
+          title: Url
+          type: string
+      required:
+      - url
+      title: MediaItem
       type: object
   securitySchemes:
     apiKey:

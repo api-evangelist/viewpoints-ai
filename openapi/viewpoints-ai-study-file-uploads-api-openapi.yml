@@ -57,21 +57,6 @@ paths:
       - Study File Uploads
 components:
   schemas:
-    PresignedPostData:
-      properties:
-        fields:
-          additionalProperties:
-            type: string
-          title: Fields
-          type: object
-        url:
-          title: Url
-          type: string
-      required:
-      - url
-      - fields
-      title: PresignedPostData
-      type: object
     ErrorResponse:
       properties:
         details:
@@ -102,6 +87,21 @@ components:
       - max_file_size
       - key
       title: PresignedUrlResponse
+      type: object
+    PresignedPostData:
+      properties:
+        fields:
+          additionalProperties:
+            type: string
+          title: Fields
+          type: object
+        url:
+          title: Url
+          type: string
+      required:
+      - url
+      - fields
+      title: PresignedPostData
       type: object
     PresignedUrlRequest:
       examples:
