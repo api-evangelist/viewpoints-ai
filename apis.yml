@@ -45,7 +45,7 @@ x-tier: profiled
 x-tier-reason: real-api-enriched
 specificationVersion: '0.23'
 created: '2026-07-17'
-modified: '2026-07-21'
+modified: '2026-10-06'
 tags:
 - Company
 - Artificial Intelligence
@@ -113,6 +113,8 @@ apis:
   - type: APIReference
     url: https://api.viewpoints.ai
 common:
+- url: https://viewpoints.ai/press
+  type: Blog
 - type: DeveloperPortal
   url: https://api.viewpoints.ai
 - type: Documentation
