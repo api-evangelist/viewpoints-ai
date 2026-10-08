@@ -113,8 +113,6 @@ apis:
   - type: APIReference
     url: https://api.viewpoints.ai
 common:
-- type: Plans
-  url: plans/viewpoints-ai-plans-pricing.yml
 - url: https://viewpoints.ai/press
   type: Blog
 - type: DeveloperPortal
